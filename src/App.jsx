@@ -6,6 +6,7 @@ import Courses from "./Components/Courses";
 import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import HomePage from "./Components/Home/HomePage";
+import ShoppingCartPage from "./Components/Cart/Cart";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Login" element={<Login></Login>} />
         <Route path="/HomePage" element={<HomePage></HomePage>} />
+        <Route path="/cart" element={<ShoppingCartPage/>}/>
       </Routes>
     </BrowserRouter>
   );
