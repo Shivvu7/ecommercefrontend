@@ -1,12 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Search, ShoppingBag, GraduationCap, ChevronDown } from "lucide-react";
+import { Search, GraduationCap, ChevronDown } from "lucide-react";
+import { FaUser } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
   };
 
   return (
@@ -22,13 +28,24 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <Link to="/about" className="hover:text-gray-500">ABOUT US</Link>
-            <Link to="/courses" className="hover:text-gray-500">COURSES</Link>
-            <Link to="/jobsection" className="hover:text-gray-500">JOB SECTION</Link>
-            <Link to="/studentlife" className="hover:text-gray-500">STUDENT LIFE</Link>
+            <Link to="/about" className="hover:text-gray-500">
+              ABOUT US
+            </Link>
+            <Link to="/courses" className="hover:text-gray-500">
+              COURSES
+            </Link>
+            <Link to="/jobsection" className="hover:text-gray-500">
+              HR SECTION
+            </Link>
+            <Link to="/Contact" className="hover:text-gray-500">
+              CONTACT US
+            </Link>
             <div className="relative group">
-              <Link to="/innovation" className="hover:text-gray-500 flex items-center">
-                INNOVATION <ChevronDown className="w-4 h-4 ml-1" />
+              <Link
+                to="/HomePage"
+                className="hover:text-gray-500 flex items-center"
+              >
+                HomePage <ChevronDown className="w-4 h-4 ml-1" />
               </Link>
             </div>
           </div>
@@ -38,9 +55,31 @@ export default function Navbar() {
             <button aria-label="Search" className="hover:text-gray-500">
               <Search className="w-4 h-4" />
             </button>
-            <button aria-label="Saved Colleges" className="hover:text-gray-500">
-              <ShoppingBag className="w-4 h-4" />
-            </button>
+            <div className="relative">
+              <button
+                aria-label="Profile"
+                onClick={toggleProfileMenu}
+                className="hover:text-gray-500 flex items-center"
+              >
+                <FaUser className="w-5 h-5" />
+              </button>
+              {isProfileMenuOpen && (
+                <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg">
+                  <Link
+                    to="/Login"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="block px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    Signup
+                  </Link>
+                </div>
+              )}
+            </div>
             <button
               aria-label="Toggle Menu"
               onClick={toggleMenu}
@@ -54,17 +93,28 @@ export default function Navbar() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="lg:hidden bg-white py-2 px-4 space-y-2">
-            <Link to="/about" className="block py-2 hover:text-gray-500">ABOUT US</Link>
-            <Link to="/courses" className="block py-2 hover:text-gray-500">COURSES</Link>
-            <Link to="/jobsection" className="block py-2 hover:text-gray-500">JOB SECTION</Link>
-            <Link to="/studentlife" className="block py-2 hover:text-gray-500">STUDENT LIFE</Link>
-            <Link to="/innovation" className="block py-2 hover:text-gray-500">INNOVATION</Link>
+            <Link to="/about" className="block py-2 hover:text-gray-500">
+              ABOUT US
+            </Link>
+            <Link to="/courses" className="block py-2 hover:text-gray-500">
+              COURSES
+            </Link>
+            <Link to="/jobsection" className="block py-2 hover:text-gray-500">
+              JOB SECTION
+            </Link>
+            <Link to="/studentlife" className="block py-2 hover:text-gray-500">
+              STUDENT LIFE
+            </Link>
+            <Link to="/HomePage" className="block py-2 hover:text-gray-500">
+              HomePage
+            </Link>
           </div>
         )}
 
         {/* Promo Section */}
-        <div className="mt-4 text-center">
-          Navigate your future with confidence. Find your perfect course match today!{' '}
+        <div className="mt-4 text-center bg-white-700">
+          Navigate your future with confidence. Find your perfect course match
+          today!{" "}
           <Link to="/explore" className="text-blue-600 hover:underline">
             Explore now &gt;
           </Link>

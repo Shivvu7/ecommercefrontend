@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import "./Css/About.css";
 import image from "../Components/Images/3dc47f30-3ee7-11ef-ad24-fdf8ff2fca7f.jpg";
 
 function About() {
@@ -10,118 +9,118 @@ function About() {
   }, []);
 
   return (
-    <div className="App bg-gray-100 min-h-screen">
-      {/* About Univoc Section */}
-      <div className="container mx-auto bg-gray-800 text-white rounded-lg shadow-lg p-8 flex items-center gap-7 h-[500px]">
-        <div data-aos="fade-right" className="md:w-1/2 relative">
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-4">About Univoc</h3>
-            <div className="line-run"></div>
-          </div>
-          <p className="text-gray-300 mb-4 leading-relaxed font-bold text-lg">
-            UNIVOC is dedicated to setting global standards in vocational
-            education and integrating industry needs. As a fast-growing provider
-            of skilling and manpower solutions in India, we focus on equipping
-            individuals with the skills necessary for today’s job market.
-          </p>
-          <p className="text-gray-300 leading-relaxed text-lg">
-            Our team of outsourcing industry experts ensures our programs are
-            both{" "}
-            <span style={{ color: "red" }}>
-              practical and aligned with real-world demands.
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl font-bold mb-4">
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+              About UNIVOC
             </span>
-          </p>
+            <span className="text-gray-700">: Empowering Through Education</span>
+          </h1>
         </div>
-        <div data-aos="fade-left" className="md:w-1/3">
-          <img
-            src={image}
-            alt="About Univoc"
-            className="rounded-lg shadow-lg w-full h-auto ml-20"
-          />
-        </div>
-      </div>
 
-      {/* Why Us Section */}
-      <div className="container mx-auto bg-white text-gray-800 rounded-lg shadow-lg p-8 flex items-center gap-12 h-[500px] justify-center ">
-        <div data-aos="fade-right" className="md:w-1/3">
-          <img
-            src={image}
-            alt="Why Us"
-            className="rounded-lg shadow-lg w-full h-auto"
-          />
-        </div>
-        <div data-aos="fade-left" className="md:w-1/2 relative">
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-4">Why Us?</h3>
-            <div className="line-run"></div>
-          </div>
-          <p className="text-gray-800 mb-4 leading-relaxed font-semibold  text-wrap text-lg">
-            Our client-centric approach sets us apart. We take the time to
-            deeply understand each client’s unique challenges and needs.
-          </p>
-          <p className="text-gray-800 leading-relaxed font-semibold text-wrap text-lg">
-            Feel the difference with personalized solutions and dedicated
-            service at <span style={{ color: "red" }}>Hanover</span> and{" "}
-            <span style={{ color: "red" }}>Tyke.</span>
-          </p>
-        </div>
-      </div>
-
-      <div className="container mx-auto bg-gray-800 text-white rounded-lg shadow-lg p-8 flex items-center gap-7 h-[600px]">
-        <div data-aos="fade-right" className="md:w-1/2 relative">
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-4">OBJECTIVE</h3>
-            <div className="line-run"></div>
-          </div>
-          <p className="text-gray-300 leading-relaxed text-wrap text-lg">
-            To facilitate and create a pool of qualified jobready resources.
-            <br />
-            To provide flexibility to students by means of pre-defined
-            single/multiple entry and multiple exit points
-            <br />
-            To ensure adequate knowledge and skills for making students work
-            ready at each exit point of the program
-            <br />
-            To address the issues of unemployment and Industry requirements in
-            the state through a meaningful industryacademia partnership by
-            adopting Dual System of training.
-            <br />
-            To integrate NSQF and international specifications within the
-            undergraduate level of higher education in order to enhance
-            employability of the graduates in meeting global workforce
-            requirements.
-          </p>
-        </div>
-        <div data-aos="fade-left" className="md:w-1/3">
-          <img
-            src={image}
-            alt="About Univoc"
-            className="rounded-lg shadow-lg w-full h-auto ml-20"
-          />
-        </div>
-      </div>
-      <div className="container mx-auto bg-white-800 text-grey-800 rounded-lg shadow-lg p-8 flex items-center gap-7 h-[600px]">
-        <div data-aos="fade-right" className="md:w-1/2 relative">
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-4">VISION</h3>
-            <div className="line-run"></div>
-          </div>
-          <p className="text-gray-800 leading-relaxed text-wrap text-lg">
-            Expand access to work-integrated education on a broad scale,
-            developing job-ready programs that create meaningful career
-            opportunities for individuals across diverse social and geographic
-            backgrounds
-          </p>
-        </div>
-        <div data-aos="fade-left" className="md:w-1/3 ml-20">
-          <div className="relative">
-            <h3 className="text-3xl font-bold mb-4">MISSION</h3>
-            <div className="line-run"></div>
-                    </div>
-            <p className="text-gray-800 leading-relaxed text-wrap text-lg">
-              Commit to empowering youth through skill-integrated education that
-              enhances employability and nurtures entrepreneurship
+        {/* About Sections */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+          {/* About UNIVOC Section */}
+          <div
+            data-aos="fade-right"
+            className="bg-white rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 shadow-lg"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)',
+            }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">About UNIVOC</h2>
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              UNIVOC is dedicated to setting global standards in vocational education and integrating industry needs. As a fast-growing provider of skilling and manpower solutions in India, we focus on equipping individuals with the skills necessary for today's job market.
             </p>
+            <p className="text-gray-600 leading-relaxed">
+              Our team of outsourcing industry experts ensures our programs are both <span className="text-red-500 font-semibold">practical and aligned with real-world demands.</span>
+            </p>
+          </div>
+
+          {/* Why Us Section */}
+          <div
+            data-aos="fade-left"
+            className="bg-white rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 shadow-lg"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)',
+            }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Why Us?</h2>
+            <p className="text-gray-600 mb-4 leading-relaxed">
+              Our client-centric approach sets us apart. We take the time to deeply understand each client's unique challenges and needs.
+            </p>
+            <p className="text-gray-600 leading-relaxed">
+              Feel the difference with personalized solutions and dedicated service at <span className="text-red-500 font-semibold">Hanover</span> and <span className="text-red-500 font-semibold">Tyke.</span>
+            </p>
+          </div>
+
+          {/* Objective Section */}
+          <div
+            data-aos="fade-right"
+            className="bg-white rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 shadow-lg lg:col-span-2"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)',
+            }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Objective</h2>
+            <ul className="text-gray-600 leading-relaxed list-disc list-inside space-y-2">
+              <li>To facilitate and create a pool of qualified job-ready resources.</li>
+              <li>To provide flexibility to students by means of pre-defined single/multiple entry and multiple exit points.</li>
+              <li>To ensure adequate knowledge and skills for making students work-ready at each exit point of the program.</li>
+              <li>To address the issues of unemployment and Industry requirements in the state through a meaningful industry-academia partnership by adopting Dual System of training.</li>
+              <li>To integrate NSQF and international specifications within the undergraduate level of higher education in order to enhance employability of the graduates in meeting global workforce requirements.</li>
+            </ul>
+          </div>
+
+          {/* Vision Section */}
+          <div
+            data-aos="fade-right"
+            className="bg-white rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 shadow-lg"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)',
+            }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Vision</h2>
+            <p className="text-gray-600 leading-relaxed">
+              Expand access to work-integrated education on a broad scale, developing job-ready programs that create meaningful career opportunities for individuals across diverse social and geographic backgrounds.
+            </p>
+          </div>
+
+          {/* Mission Section */}
+          <div
+            data-aos="fade-left"
+            className="bg-white rounded-3xl p-8 transition-all duration-500 transform hover:scale-105 shadow-lg"
+            style={{
+              background: 'linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)',
+            }}
+          >
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Mission</h2>
+            <p className="text-gray-600 leading-relaxed">
+              Commit to empowering youth through skill-integrated education that enhances employability and nurtures entrepreneurship.
+            </p>
+          </div>
+        </div>
+
+        {/* Image Section */}
+        <div className="mt-16 text-center">
+          <img
+            src={image}
+            alt="UNIVOC"
+            className="rounded-lg shadow-lg mx-auto max-w-full h-auto"
+          />
+        </div>
+
+        {/* Footer Text */}
+        <div className="text-center mt-16">
+          <h2 className="text-4xl font-bold">
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+              Shaping Futures
+            </span>
+            <span className="text-gray-700">, Building Skills</span>
+          </h2>
         </div>
       </div>
     </div>
