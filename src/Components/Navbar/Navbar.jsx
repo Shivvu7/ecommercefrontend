@@ -28,7 +28,7 @@ export default function Navbar() {
           </div>
 
           {/* Logo Section */}
-          <Link to="/" className="text-2xl flex items-center space-x-2">
+          <Link to="/HomePage" className="text-2xl flex items-center space-x-2">
             <span className="font-bold text-xl">MERA Bestie</span>
           </Link>
 
