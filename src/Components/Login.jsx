@@ -20,11 +20,11 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">
         <div>
           <h2 className="text-center text-4xl font-extrabold text-gray-900">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-pink-500 to-pink-700 text-transparent bg-clip-text">
               Welcome Back
             </span>
           </h2>
@@ -48,7 +48,7 @@ const Login = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-t-lg relative block w-full px-3 py-4 pl-12 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-lg"
+                  className="appearance-none rounded-t-lg relative block w-full px-3 py-4 pl-12 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-lg"
                   placeholder="Email address"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -69,7 +69,7 @@ const Login = () => {
                   type={showPassword ? "text" : "password"}
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-b-lg relative block w-full px-3 py-4 pl-12 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-lg"
+                  className="appearance-none rounded-b-lg relative block w-full px-3 py-4 pl-12 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-pink-500 focus:border-pink-500 focus:z-10 sm:text-lg"
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -97,7 +97,7 @@ const Login = () => {
                 id="remember-me"
                 name="remember-me"
                 type="checkbox"
-                className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                className="h-5 w-5 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
               />
               <label
                 htmlFor="remember-me"
@@ -110,7 +110,7 @@ const Login = () => {
             <div className="text-sm">
               <a
                 href="#"
-                className="font-medium text-blue-600 hover:text-blue-500"
+                className="font-medium text-pink-600 hover:text-pink-500"
               >
                 Forgot your password?
               </a>
@@ -120,7 +120,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-lg font-medium rounded-lg text-white bg-gradient-to-r from-pink-500 to-pink-700 hover:from-pink-600 hover:to-pink-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
             >
               Sign in
             </button>
@@ -143,7 +143,7 @@ const Login = () => {
             <div>
               <a
                 href="#"
-                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-gray-50"
+                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-pink-50"
               >
                 <span className="sr-only">Sign in with Google</span>
                 <FaGoogle className="w-6 h-6" />
@@ -153,7 +153,7 @@ const Login = () => {
             <div>
               <a
                 href="#"
-                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-gray-50"
+                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-pink-50"
               >
                 <span className="sr-only">Sign in with Facebook</span>
                 <FaFacebook className="w-6 h-6" />
@@ -163,7 +163,7 @@ const Login = () => {
             <div>
               <a
                 href="#"
-                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-gray-50"
+                className="w-full inline-flex justify-center py-3 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-lg font-medium text-gray-500 hover:bg-pink-50"
               >
                 <span className="sr-only">Sign in with Twitter</span>
                 <FaTwitter className="w-6 h-6" />
