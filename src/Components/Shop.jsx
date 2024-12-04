@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const Shop = () => {
+  const [viewMode, setViewMode] = useState('grid'); // State for toggling between grid and list views
+
   const categories = [
     {
       name: 'Books',
@@ -20,32 +22,32 @@ const Shop = () => {
   const products = [
     {
       name: 'Customized Journal',
-      price: '₹199',
+      price: '₹̶𝟺̶𝟶̶𝟶̶       ₹199',
       img: 'src/Components/Images/img1.jpg', // Replace with your image path
     },
     {
       name: 'Floral Greeting Card Set',
-      price: '₹239',
+      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹239',
       img: 'src/Components/Images/img2.jpg', // Replace with your image path
     },
     {
       name: 'Premium Leather Diary',
-      price: '₹289',
+      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹289',
       img: 'src/Components/Images/img3.jpg', // Replace with your image path
     },
     {
       name: 'Eco-Friendly Pen Pack',
-      price: '₹324',
+      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹324',
       img: 'src/Components/Images/img4.jpg', // Replace with your image path
     },
     {
       name: 'Designer Sticky Notes',
-      price: '₹199',
+      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹199',
       img: 'src/Components/Images/img2.jpg', // Replace with your image path
     },
     {
       name: 'Handcrafted Notebooks',
-      price: '₹190',
+      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹190',
       img: 'src/Components/Images/img1.jpg', // Replace with your image path
     },
   ];
@@ -96,11 +98,48 @@ const Shop = () => {
           ))}
         </div>
       </div>
+      
+      {/* Filter and Sort Section */}
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="flex justify-between items-center mb-4">
+          <span>Showing 1 - 15 of 22 results</span>
+          <div className="flex gap-4 items-center">
+            <button className="bg-gray-200 px-4 py-2 rounded">Filter</button>
+            <div>
+              <label htmlFor="sort" className="mr-2">Sort by</label>
+              <select id="sort" className="border-gray-300 border px-2 py-1 rounded">
+                <option value="price">Price</option>
+                <option value="popularity">Popularity</option>
+                <option value="rating">Rating</option>
+              </select>
+            </div>
+            <div className="flex gap-2">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 border rounded ${viewMode === 'grid' ? 'bg-gray-300' : ''}`}
+              >
+                ▤
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 border rounded ${viewMode === 'list' ? 'bg-gray-300' : ''}`}
+              >
+                ☰
+              </button>
+              <button className="p-2 border rounded">|||</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Products Section */}
       <div className="max-w-7xl mx-auto p-6">
         <h3 className="text-3xl font-bold mb-4">Products</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <div
+          className={`grid ${
+            viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : ''
+          }`}
+        >
           {products.map((product, index) => (
             <div
               key={index}
