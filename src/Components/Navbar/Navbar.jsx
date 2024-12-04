@@ -53,9 +53,10 @@ export default function Navbar() {
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-6">
+            <Link to="/cart" className="hover:text-gray-500"> 
             <button aria-label="Cart" className="hover:text-gray-500">
               <FaShoppingCart className="w-4 h-4" />
-            </button>
+            </button></Link>
             <button aria-label="Wishlist" className="hover:text-gray-500">
               <FaHeart className="w-4 h-4" />
             </button>
