@@ -33,12 +33,12 @@ const Shop = () => {
     {
       name: 'Premium Leather Diary',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹289',
-      img: 'src/Components/Images/img3.jpg', // Replace with your image path
+      img: "https://i.pinimg.com/originals/80/80/36/80803618d9f2b5536f24353c8f15d374.jpg", // Replace with your image path
     },
     {
       name: 'Eco-Friendly Pen Pack',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹324',
-      img: 'src/Components/Images/img4.jpg', // Replace with your image path
+      img: "https://i.etsystatic.com/19893040/r/il/0ddcd7/3907960016/il_570xN.3907960016_ej9x.jpg", // Replace with your image path
     },
     {
       name: 'Designer Sticky Notes',

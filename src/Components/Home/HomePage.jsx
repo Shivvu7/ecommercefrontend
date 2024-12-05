@@ -6,6 +6,7 @@ import img1 from "../Images/img1.jpg";
 import img2 from "../Images/img2.jpg";
 import img3 from "../Images/img3.jpg";
 import img4 from "../Images/img4.jpg";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -295,9 +296,11 @@ const HomePage = () => {
           </div>
 
           <div className="text-center">
+            <Link to={"/shop"}
+            > 
             <button className="bg-black text-white hover:bg-gray-900 px-12 py-3 rounded text-lg font-bold uppercase tracking-wider">
               Shop Now!!
-            </button>
+            </button></Link>
           </div>
         </div>
       </section>
