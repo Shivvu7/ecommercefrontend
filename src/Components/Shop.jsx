@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 const Shop = () => {
   const [viewMode, setViewMode] = useState('grid'); // State for toggling between grid and list views
+  const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
+  const [sortedProducts, setSortedProducts] = useState([]); // State to hold sorted products
+  const [loadMore, setLoadMore] = useState(6); // State for load more functionality
 
   const categories = [
     {
@@ -24,33 +27,84 @@ const Shop = () => {
       name: 'Customized Journal',
       price: '₹̶𝟺̶𝟶̶𝟶̶       ₹199',
       img: "https://bookbub-res.cloudinary.com/image/upload/w_1200,h_628,c_fill,g_auto,f_auto,q_auto/v1583872726/blog/the-top-20-must-read-books-of-all-time-share.jpg", // Replace with your image path
+      category: 'Books', // Added category for filtering
+      rating: 4.5, // Added rating for sorting
     },
     {
       name: 'Floral Greeting Card Set',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹239',
       img: "https://imaginationwaffle.com/wp-content/uploads/2018/10/Custom-Greeting-Cards.jpg", // Replace with your image path
+      category: 'Gift Boxes', // Added category for filtering
+      rating: 4.2, // Added rating for sorting
     },
     {
       name: 'Premium Leather Diary',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹289',
       img: "https://i.pinimg.com/originals/80/80/36/80803618d9f2b5536f24353c8f15d374.jpg", // Replace with your image path
+      category: 'Stationery', // Added category for filtering
+      rating: 4.8, // Added rating for sorting
     },
     {
       name: 'Eco-Friendly Pen Pack',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹324',
       img: "https://i.etsystatic.com/19893040/r/il/0ddcd7/3907960016/il_570xN.3907960016_ej9x.jpg", // Replace with your image path
+      category: 'Stationery', // Added category for filtering
+      rating: 4.1, // Added rating for sorting
     },
     {
       name: 'Designer Sticky Notes',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹199',
       img: "https://tse3.mm.bing.net/th?id=OIP.h_SC1wpuXeIgMQJkZ2B0mQAAAA&pid=Api&P=0&h=180", // Replace with your image path
+      category: 'Stationery', // Added category for filtering
+      rating: 4.4, // Added rating for sorting
     },
     {
       name: 'Handcrafted Notebooks',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹190',
       img: "https://i.etsystatic.com/28382354/r/il/6e56ec/2995903254/il_fullxfull.2995903254_kabk.jpg", // Replace with your image path
+      category: 'Books', // Added category for filtering
+      rating: 4.6, // Added rating for sorting
     },
   ];
+
+  // Function to filter products by category
+  const filterProducts = (category) => {
+    if (category === 'all') {
+      setFilteredProducts(products);
+    } else {
+      const filtered = products.filter(product => product.category === category);
+      setFilteredProducts(filtered);
+    }
+  };
+
+  // Function to sort products
+  const sortProducts = (sortBy) => {
+    let sorted;
+    switch (sortBy) {
+      case 'price':
+        sorted = products.sort((a, b) => parseFloat(a.price.split('₹')[1].trim()) - parseFloat(b.price.split('₹')[1].trim()));
+        break;
+      case 'popularity':
+        // Assuming popularity is based on rating for simplicity
+        sorted = products.sort((a, b) => b.rating - a.rating);
+        break;
+      case 'rating':
+        sorted = products.sort((a, b) => b.rating - a.rating);
+        break;
+      default:
+        sorted = products;
+    }
+    setSortedProducts(sorted);
+  };
+
+  // Function to load more products
+  const handleLoadMore = () => {
+    setLoadMore(prevLoadMore => prevLoadMore + 6);
+  };
+
+  useEffect(() => {
+    setSortedProducts(products.sort((a, b) => parseFloat(a.price.split('₹')[1].trim()) - parseFloat(b.price.split('₹')[1].trim())));
+  }, []);
 
   return (
     <div className="bg-gray-100">
@@ -102,12 +156,12 @@ const Shop = () => {
       {/* Filter and Sort Section */}
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-between items-center mb-4">
-          <span>Showing 1 - 15 of 22 results</span>
+          <span>Showing 1 - {loadMore} of {sortedProducts.length} results</span>
           <div className="flex gap-4 items-center">
             <button className="bg-gray-200 px-4 py-2 rounded">Filter</button>
             <div>
               <label htmlFor="sort" className="mr-2">Sort by</label>
-              <select id="sort" className="border-gray-300 border px-2 py-1 rounded">
+              <select id="sort" className="border-gray-300 border px-2 py-1 rounded" onChange={(e) => sortProducts(e.target.value)}>
                 <option value="price">Price</option>
                 <option value="popularity">Popularity</option>
                 <option value="rating">Rating</option>
@@ -140,7 +194,21 @@ const Shop = () => {
             viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : ''
           }`}
         >
-          {products.map((product, index) => (
+          {filteredProducts.length > 0 ? filteredProducts.slice(0, loadMore).map((product, index) => (
+            <div
+              key={index}
+              className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+            >
+              <div
+                className="h-40 bg-cover bg-center"
+                style={{ backgroundImage: `url('${product.img}')` }}
+              />
+              <div className="p-4 text-center">
+                <h4 className="font-bold text-lg">{product.name}</h4>
+                <p className="text-gray-600">{product.price}</p>
+              </div>
+            </div>
+          )) : sortedProducts.slice(0, loadMore).map((product, index) => (
             <div
               key={index}
               className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
@@ -156,11 +224,13 @@ const Shop = () => {
             </div>
           ))}
         </div>
-        <div className="text-center mt-10">
-          <button className="bg-black text-white px-6 py-2 rounded-md">
-            Load More
-          </button>
-        </div>
+        {loadMore < sortedProducts.length && (
+          <div className="text-center mt-10">
+            <button className="bg-black text-white px-6 py-2 rounded-md" onClick={handleLoadMore}>
+              Load More
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Banner */}
