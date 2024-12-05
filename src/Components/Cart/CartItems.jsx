@@ -54,8 +54,8 @@ const CartItems = () => {
             <span className="font-medium text-sm md:text-base">
               Rs. {(item.price * item.quantity).toFixed(2)}
             </span>
-            <button className="text-red-500">
-              <FontAwesomeIcon icon={faTrash} />
+            <button className="text-red-500  ">
+              <FontAwesomeIcon icon={faTrash} className="hover:bg-red-300" />
             </button>
           </div>
         </div>

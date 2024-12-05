@@ -2,6 +2,10 @@ import React from "react";
 import { FaGift, FaCamera, FaSearch, FaHeart } from "react-icons/fa";
 import Footer from "../Footer";
 import Product1 from "../Home/Product1.jpeg";
+import img1 from "../Images/img1.jpg";
+import img2 from "../Images/img2.jpg";
+import img3 from "../Images/img3.jpg";
+import img4 from "../Images/img4.jpg";
 
 const HomePage = () => {
   return (
@@ -9,14 +13,14 @@ const HomePage = () => {
       {/* Hero Section */}
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        <div className="absolute  inset-0 z-0">
           <div className="relative w-full h-full">
             <img
-              src="/Product1.svg?height=600&width=1200"
+              src="https://cdn.wallpapersafari.com/89/8/lybQgH.jpg"
               alt="Background"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-pink-50/80"></div>
+           
           </div>
         </div>
 
@@ -25,15 +29,12 @@ const HomePage = () => {
           <div className="bg-pink-100/90 p-8 md:p-12 rounded-lg backdrop-blur-sm">
             <h1
               className="mb-6 text-4xl md:text-5xl font-serif text-center"
-              style={{ fontFamily: "Old English Text MT, serif" }}
+              style={{ fontFamily:"revert-layer" }}
             >
               Revolutionizing Gift Giving
             </h1>
-            <p className="mb-8 text-gray-700 text-center max-w-2xl mx-auto">
-              Penatibus sem vitae mollis luctus mi tellus. Maximus eu eleifend
-              aptent dapibus metus maecenas consequat. Elementum interdum a
-              semper! Netus nullam eros nisi volutpat nibh ex ultricies.
-              Pharetra sagittis sit aliquet at. Magna nam prates justo.
+            <p className="mb-8 text-gray-700 text-center max-w-2xl mx-auto" style={{ fontFamily: "Poppins, Arial, sans-serif" }}>
+            A world of unique gifts for every moment and milestone
             </p>
             <div className="text-center">
               <button className="bg-white text-black hover:bg-gray-50 px-8 py-2 rounded uppercase text-sm tracking-wider">
@@ -60,7 +61,7 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src="/Product1.jpeg"
+                  src={img4}
                   alt="Stationery Items"
                   className="w-full h-full object-cover"
                 />
@@ -76,7 +77,7 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src="/placeholder.svg?height=400&width=600"
+                  src={img3}
                   alt="Couple Gift Items"
                   className="w-full h-full object-cover"
                 />
@@ -94,7 +95,7 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src="/placeholder.svg?height=400&width=600"
+                  src={img2}
                   alt="Greeting Cards"
                   className="w-full h-full object-cover"
                 />
@@ -110,7 +111,7 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src="/placeholder.svg?height=400&width=600"
+                  src={img1}
                   alt="Gift Items"
                   className="w-full h-full object-cover"
                 />
@@ -131,7 +132,7 @@ const HomePage = () => {
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/placeholder.svg?height=600&width=1200"
+            src="https://tse3.mm.bing.net/th?id=OIP.RNJBshhRJcxPoSt2Slj5bAHaEK&pid=Api&P=0&h=180"
             alt="Vision background"
             className="w-full h-full object-cover"
           />
@@ -180,37 +181,37 @@ const HomePage = () => {
                   Read More
                 </button>
               </div>
-
-              {/* Image Grid */}
+              {/* 
+              
               <div className="grid grid-cols-2 gap-4">
                 <div className="rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=300&width=300"
+                    src={img1}
                     alt="Minimalist bedroom design"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden">
                   <img
-                    src="/placeholder.svg?height=300&width=300"
+                    src={img2}
                     alt="Pink stationery items"
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div className="rounded-lg overflow-hidden col-span-2">
                   <img
-                    src="/placeholder.svg?height=300&width=600"
+                    src= {img3}
                     alt="Christmas decorations"
                     className="w-full h-full object-cover"
                   />
                 </div>
-              </div>
-            </div>
+              </div>*/}
+            </div>  
 
             {/* Right Content - Large Image with Video Button */}
             <div className="relative">
               <img
-                src="/placeholder.svg?height=800&width=600"
+                src="https://tse2.mm.bing.net/th?id=OIP.5jNS8o1X89ckN414RYqZggHaEK&pid=Api&P=0&h=180"
                 alt="Modern living room"
                 className="w-full h-full object-cover rounded-lg"
               />
@@ -257,7 +258,7 @@ const HomePage = () => {
             <div className="text-center">
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src="/placeholder.svg?height=300&width=400"
+                  src= {img1}
                   alt="Personalized Gifts"
                   className="w-full h-64 object-cover"
                 />
@@ -270,7 +271,7 @@ const HomePage = () => {
             <div className="text-center">
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src="/placeholder.svg?height=300&width=400"
+                  src= {img2}
                   alt="John's Wedding Gift Set"
                   className="w-full h-64 object-cover"
                 />
@@ -283,7 +284,7 @@ const HomePage = () => {
             <div className="text-center">
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src="/placeholder.svg?height=300&width=400"
+                  src= {img3}
                   alt="Premium Leather Journal"
                   className="w-full h-64 object-cover"
                 />
@@ -308,7 +309,7 @@ const HomePage = () => {
             {/* Background Image Container */}
             <div className="rounded-lg overflow-hidden">
               <img
-                src="/placeholder.svg?height=600&width=1200"
+                src=  "https://wallpapercave.com/wp/wp7488376.jpg"
                 alt="Guitarist performing"
                 className="w-full h-[500px] object-cover"
               />
