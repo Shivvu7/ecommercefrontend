@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { motion } from "framer-motion";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -36,7 +35,6 @@ const ContactUs = () => {
         setShowSuccess(true);
         setFormData({ name: "", email: "", message: "" });
         
-        // Hide success message and reload after 3 seconds
         setTimeout(() => {
           setShowSuccess(false);
           window.location.reload();
@@ -52,26 +50,44 @@ const ContactUs = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
       {showSuccess && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl text-center" data-aos="zoom-in">
-            <div className="w-24 h-24 mx-auto mb-4">
-              <lottie-player
-                src="https://assets2.lottiefiles.com/packages/lf20_success.json"
-                background="transparent"
-                speed="1"
-                loop
-                autoplay
-              ></lottie-player>
-            </div>
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+        >
+          <div className="bg-white p-8 rounded-lg shadow-xl text-center">
+            <motion.div 
+              animate={{ 
+                scale: [1, 1.2, 1],
+                rotate: [0, 360, 360]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-24 h-24 mx-auto mb-4 text-green-500"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1 }}
+                  d="M20 6L9 17l-5-5"
+                />
+              </svg>
+            </motion.div>
             <h3 className="text-2xl font-bold text-green-600 mb-2">Thank You!</h3>
             <p className="text-gray-600">We will answer you shortly.</p>
             <p className="text-gray-600">Continue browsing...</p>
           </div>
-        </div>
+        </motion.div>
       )}
 
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 transition-all duration-500 ease-in-out transform hover:scale-105">
+        <motion.div 
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-16"
+        >
           <h1 className="text-4xl font-bold mb-4">
             <span className="bg-gradient-to-r from-pink-500 to-pink-700 text-transparent bg-clip-text">
               Contact Us
@@ -81,11 +97,14 @@ const ContactUs = () => {
             We'd love to hear from you. Reach out to us for any queries or
             support.
           </p>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div
-            className="bg-white rounded-3xl p-8 shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105"
+          <motion.div
+            initial={{ x: -50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-3xl p-8 shadow-lg"
             style={{
               background: "linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)",
             }}
@@ -145,17 +164,22 @@ const ContactUs = () => {
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 ></textarea>
               </div>
-              <button
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 type="submit"
                 className="w-full bg-gradient-to-r from-pink-500 to-pink-700 text-white py-3 px-6 rounded-xl font-medium hover:from-pink-600 hover:to-pink-800 transition-all duration-300"
               >
                 Send Message
-              </button>
+              </motion.button>
             </form>
-          </div>
+          </motion.div>
 
-          <div
-            className="bg-white rounded-3xl p-8 shadow-lg transition-all duration-500 ease-in-out transform hover:scale-105"
+          <motion.div
+            initial={{ x: 50, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="bg-white rounded-3xl p-8 shadow-lg"
             style={{
               background: "linear-gradient(145deg, #ffffff 0%, #f8f9ff 100%)",
             }}
@@ -164,27 +188,36 @@ const ContactUs = () => {
               Contact Information
             </h2>
             <div className="space-y-4">
-              <div className="flex items-center">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center"
+              >
                 <FaPhone className="text-pink-500 mr-4" />
                 <div>
                   <h3 className="font-semibold">Phone</h3>
                   <p className="text-gray-600">+1 234 567 8901</p>
                 </div>
-              </div>
-              <div className="flex items-center">
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center"
+              >
                 <FaEnvelope className="text-pink-500 mr-4" />
                 <div>
                   <h3 className="font-semibold">Email</h3>
                   <p className="text-gray-600">contact@example.com</p>
                 </div>
-              </div>
-              <div className="flex items-center">
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="flex items-center"
+              >
                 <FaMapMarkerAlt className="text-pink-500 mr-4" />
                 <div>
                   <h3 className="font-semibold">Address</h3>
                   <p className="text-gray-600">1234 Example St, City, Country</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             <div className="mt-8">
@@ -201,10 +234,15 @@ const ContactUs = () => {
                 ></iframe>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
-        <div className="text-center mt-16 transition-all duration-500 ease-in-out transform hover:scale-105">
+        <motion.div 
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mt-16"
+        >
           <h2 className="text-3xl font-bold">
             <span className="bg-gradient-to-r from-pink-500 to-pink-700 text-transparent bg-clip-text">
               Let's Connect
@@ -214,7 +252,7 @@ const ContactUs = () => {
             We're here to answer any questions you may have about our programs
             and services.
           </p>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
