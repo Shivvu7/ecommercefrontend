@@ -29,7 +29,7 @@ const HomePage = () => {
           <div className="bg-pink-100/90 p-8 md:p-12 rounded-lg backdrop-blur-sm">
             <h1
               className="mb-6 text-4xl md:text-5xl font-serif text-center"
-              style={{ fontFamily:"revert-layer" }}
+              style={{ fontFamily:"-moz-initial" }}
             >
               Revolutionizing Gift Giving
             </h1>
@@ -61,12 +61,12 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src={img4}
+                  src="https://i.pinimg.com/originals/96/24/6e/96246e3c133e6cb5ae4c7843f9e45b22.jpg"
                   alt="Stationery Items"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 bg-pink-50">
+              <div className="p-6 bg-pink-100">
                 <h3 className="text-xl font-semibold mb-2">Stationary Items</h3>
                 <p className="text-gray-600 text-sm">
                   Ante mus blandit sapien sociosqu per consequat ad.
@@ -77,12 +77,12 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src={img3}
+                  src="https://up.yimg.com/ib/th?id=OIP.g4rG30id9Ui1e-2ZBR_1twHaFq&pid=Api&rs=1&c=1&qlt=95&w=149&h=114"
                   alt="Couple Gift Items"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 bg-pink-50">
+              <div className="p-6 bg-pink-100">
                 <h3 className="text-xl font-semibold mb-2">
                   Couple Gift Items
                 </h3>
@@ -100,7 +100,7 @@ const HomePage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 bg-pink-50">
+              <div className="p-6 bg-pink-100">
                 <h3 className="text-xl font-semibold mb-2">Greeting Cards</h3>
                 <p className="text-gray-600 text-sm">
                   Ante mus blandit sapien sociosqu per consequat ad.
@@ -111,12 +111,12 @@ const HomePage = () => {
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
-                  src={img1}
+                  src="https://tse1.mm.bing.net/th?id=OIP.EYAqW5p_HzCoXKq1dXvGyQHaFj&pid=Api&P=0&h=180"
                   alt="Gift Items"
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="p-6 bg-pink-50">
+              <div className="p-6 bg-pink-100">
                 <h3 className="text-xl font-semibold mb-2">Gift Items</h3>
                 <p className="text-gray-600 text-sm">
                   Ante mus blandit sapien sociosqu per consequat ad.
@@ -258,7 +258,7 @@ const HomePage = () => {
             <div className="text-center">
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src= {img1}
+                  src= "https://res.cloudinary.com/dugcmkito/image/upload/v1671648147/03_What_is_an_e_commerce_shopping_cart_a81bc3023b.png"
                   alt="Personalized Gifts"
                   className="w-full h-64 object-cover"
                 />
@@ -271,7 +271,7 @@ const HomePage = () => {
             <div className="text-center">
               <div className="mb-4 rounded-lg overflow-hidden">
                 <img
-                  src= {img2}
+                  src= "https://www.ringcentral.com/us/en/blog/wp-content/uploads/2021/03/Untitled-design-1-1.png"
                   alt="John's Wedding Gift Set"
                   className="w-full h-64 object-cover"
                 />

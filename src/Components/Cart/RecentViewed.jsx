@@ -34,7 +34,7 @@ const RecentlyViewed = () => {
               {product.name}
             </h4>
             <p className="text-gray-500 text-xs md:text-sm">
-              Rs. {product.price}
+            ₹̶𝟺̶𝟶̶𝟶̶  Rs. {product.price}
             </p>
           </div>
         ))}

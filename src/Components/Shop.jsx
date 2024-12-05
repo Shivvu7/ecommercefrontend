@@ -7,15 +7,15 @@ const Shop = () => {
   const categories = [
     {
       name: 'Books',
-      img: 'src/Components/Images/img1.jpg', // Replace with your image path
+      img: "https://tse2.mm.bing.net/th?id=OIP.uyi1Q5l2H8Zf9APJQplJfQHaEK&pid=Api&P=0&h=180", // Replace with your image path
     },
     {
       name: 'Gift Boxes',
-      img: 'src/Components/Images/img2.jpg', // Replace with your image path
+      img:"http://images4.fanpop.com/image/photos/22200000/Christmas-gifts-christmas-gifts-22231235-2048-2048.jpg", // Replace with your image path
     },
     {
       name: 'Stationery',
-      img: 'src/Components/Images/img4.jpg', // Replace with your image path
+      img: "https://tse1.mm.bing.net/th?id=OIP.UCpcTmMMOdXTF6WAhtD94QHaH0&pid=Api&P=0&h=180", // Replace with your image path
     },
   ];
 
@@ -23,12 +23,12 @@ const Shop = () => {
     {
       name: 'Customized Journal',
       price: '₹̶𝟺̶𝟶̶𝟶̶       ₹199',
-      img: 'src/Components/Images/img1.jpg', // Replace with your image path
+      img: "https://bookbub-res.cloudinary.com/image/upload/w_1200,h_628,c_fill,g_auto,f_auto,q_auto/v1583872726/blog/the-top-20-must-read-books-of-all-time-share.jpg", // Replace with your image path
     },
     {
       name: 'Floral Greeting Card Set',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹239',
-      img: 'src/Components/Images/img2.jpg', // Replace with your image path
+      img: "https://imaginationwaffle.com/wp-content/uploads/2018/10/Custom-Greeting-Cards.jpg", // Replace with your image path
     },
     {
       name: 'Premium Leather Diary',
@@ -43,12 +43,12 @@ const Shop = () => {
     {
       name: 'Designer Sticky Notes',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹199',
-      img: 'src/Components/Images/img2.jpg', // Replace with your image path
+      img: "https://tse3.mm.bing.net/th?id=OIP.h_SC1wpuXeIgMQJkZ2B0mQAAAA&pid=Api&P=0&h=180", // Replace with your image path
     },
     {
       name: 'Handcrafted Notebooks',
       price: '₹̶𝟺̶𝟶̶𝟶̶      ₹190',
-      img: 'src/Components/Images/img1.jpg', // Replace with your image path
+      img: "https://i.etsystatic.com/28382354/r/il/6e56ec/2995903254/il_fullxfull.2995903254_kabk.jpg", // Replace with your image path
     },
   ];
 
