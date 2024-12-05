@@ -16,7 +16,7 @@ const VoucherSection = () => {
           onChange={(e) => setVoucher(e.target.value)}
           className="flex-grow border p-2 rounded-md outline-none text-sm md:text-base"
         />
-        <button className="bg-black text-white px-4 py-2 rounded-md text-sm md:text-base">
+        <button className="bg-black text-white px-4 py-2 rounded-md text-sm md:text-base hover:bg-gray-500">
           Redeem
         </button>
       </div>
@@ -25,7 +25,7 @@ const VoucherSection = () => {
         <p>Shipping: Rs. 0.00</p>
         <h4 className="text-base md:text-lg font-semibold">Total: Rs. 597.00</h4>
       </div>
-      <button className="bg-black text-white w-full py-2 rounded-md mt-4 text-sm md:text-base">
+      <button className="bg-black text-white w-full py-2 rounded-md mt-4 text-sm md:text-base hover:bg-gray-500">
         Proceed to Checkout
       </button>
     </div>

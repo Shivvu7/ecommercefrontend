@@ -13,10 +13,10 @@ const ShoppingCartPage = () => {
       <div className="text-left bg-pink-100 p-4 rounded-md">
         <h2 className="text-lg md:text-xl font-semibold mb-2">Shopping Cart</h2>
         <h6 className="font-semibold text-sm md:text-base">
-          <Link to={"/shop"} className="flex items-center space-x-2">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            <span>Continue Shopping</span>
-          </Link>
+         
+            <span> <Link to={"/shop"} className="flex items-center space-x-2  hover:text-gray-500 " >
+            <FontAwesomeIcon icon={faArrowLeft} />Continue Shopping </Link></span>
+          
         </h6>
       </div>
 
