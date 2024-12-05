@@ -6,6 +6,7 @@ import { FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,21 +16,18 @@ export default function Navbar() {
     setIsProfileMenuOpen(!isProfileMenuOpen);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
+
   return (
     <nav className="bg-white text-black border-b">
       <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
         {/* Top Navigation */}
         <div className="h-[60px] flex items-center justify-between text-sm font-normal">
-          {/* Search Icon */}
-          <div className="flex items-center">
-            <button aria-label="Search" className="hover:text-gray-500">
-              <Search className="w-4 h-4" />
-            </button>
-          </div>
-
           {/* Logo Section */}
-          <Link to="/HomePage" className="text-2xl flex items-center space-x-2">
-            <span className="font-bold text-xl">MERA Bestie</span>
+          <Link to="/HomePage" className="text-2xl flex items-center">
+            <span className="font-['Bodoni_MT'] font-bold text-xl">MERA Bestie</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -53,6 +51,13 @@ export default function Navbar() {
 
           {/* Action Buttons */}
           <div className="flex items-center space-x-6">
+            <button 
+              aria-label="Search" 
+              className="hover:text-gray-500"
+              onClick={toggleSearch}
+            >
+              <Search className="w-4 h-4 stroke-[2.5] hover:stroke-[3]" />
+            </button>
             <Link to="/cart" className="hover:text-gray-500"> 
             <button aria-label="Cart" className="hover:text-gray-500">
               <FaShoppingCart className="w-4 h-4" />
@@ -69,7 +74,7 @@ export default function Navbar() {
                 <FaUser className="w-4 h-4" />
               </button>
               {isProfileMenuOpen && (
-                <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg   z-20">
+                <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg z-20">
                   <Link
                     to="/login"
                     className="block px-4 py-2 text-sm hover:bg-gray-100"
@@ -94,6 +99,16 @@ export default function Navbar() {
             </button>
           </div>
         </div>
+
+        {isSearchOpen && (
+          <div className="absolute top-[60px] left-0 w-full bg-white p-4 shadow-lg z-50">
+            <input
+              type="text"
+              placeholder="Search products..."
+              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+            />
+          </div>
+        )}
 
         {/* Mobile Navigation */}
         {isMenuOpen && (

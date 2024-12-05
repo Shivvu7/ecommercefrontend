@@ -6,66 +6,47 @@ const Shop = () => {
   const [filteredProducts, setFilteredProducts] = useState([]); // State to hold filtered products
   const [sortedProducts, setSortedProducts] = useState([]); // State to hold sorted products
   const [loadMore, setLoadMore] = useState(6); // State for load more functionality
+  const [products, setProducts] = useState([]); // State to hold products from API
 
   const categories = [
     {
       name: 'Books',
-      img: "https://tse2.mm.bing.net/th?id=OIP.uyi1Q5l2H8Zf9APJQplJfQHaEK&pid=Api&P=0&h=180", // Replace with your image path
+      img: "https://tse2.mm.bing.net/th?id=OIP.uyi1Q5l2H8Zf9APJQplJfQHaEK&pid=Api&P=0&h=180",
     },
     {
       name: 'Gift Boxes',
-      img:"http://images4.fanpop.com/image/photos/22200000/Christmas-gifts-christmas-gifts-22231235-2048-2048.jpg", // Replace with your image path
+      img:"http://images4.fanpop.com/image/photos/22200000/Christmas-gifts-christmas-gifts-22231235-2048-2048.jpg",
     },
     {
-      name: 'Stationery',
-      img: "https://tse1.mm.bing.net/th?id=OIP.UCpcTmMMOdXTF6WAhtD94QHaH0&pid=Api&P=0&h=180", // Replace with your image path
+      name: 'Stationery', 
+      img: "https://tse1.mm.bing.net/th?id=OIP.UCpcTmMMOdXTF6WAhtD94QHaH0&pid=Api&P=0&h=180",
     },
   ];
 
-  const products = [
-    {
-      name: 'Customized Journal',
-      price: '₹̶𝟺̶𝟶̶𝟶̶       ₹199',
-      img: "https://bookbub-res.cloudinary.com/image/upload/w_1200,h_628,c_fill,g_auto,f_auto,q_auto/v1583872726/blog/the-top-20-must-read-books-of-all-time-share.jpg", // Replace with your image path
-      category: 'Books', // Added category for filtering
-      rating: 4.5, // Added rating for sorting
-    },
-    {
-      name: 'Floral Greeting Card Set',
-      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹239',
-      img: "https://imaginationwaffle.com/wp-content/uploads/2018/10/Custom-Greeting-Cards.jpg", // Replace with your image path
-      category: 'Gift Boxes', // Added category for filtering
-      rating: 4.2, // Added rating for sorting
-    },
-    {
-      name: 'Premium Leather Diary',
-      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹289',
-      img: "https://i.pinimg.com/originals/80/80/36/80803618d9f2b5536f24353c8f15d374.jpg", // Replace with your image path
-      category: 'Stationery', // Added category for filtering
-      rating: 4.8, // Added rating for sorting
-    },
-    {
-      name: 'Eco-Friendly Pen Pack',
-      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹324',
-      img: "https://i.etsystatic.com/19893040/r/il/0ddcd7/3907960016/il_570xN.3907960016_ej9x.jpg", // Replace with your image path
-      category: 'Stationery', // Added category for filtering
-      rating: 4.1, // Added rating for sorting
-    },
-    {
-      name: 'Designer Sticky Notes',
-      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹199',
-      img: "https://tse3.mm.bing.net/th?id=OIP.h_SC1wpuXeIgMQJkZ2B0mQAAAA&pid=Api&P=0&h=180", // Replace with your image path
-      category: 'Stationery', // Added category for filtering
-      rating: 4.4, // Added rating for sorting
-    },
-    {
-      name: 'Handcrafted Notebooks',
-      price: '₹̶𝟺̶𝟶̶𝟶̶      ₹190',
-      img: "https://i.etsystatic.com/28382354/r/il/6e56ec/2995903254/il_fullxfull.2995903254_kabk.jpg", // Replace with your image path
-      category: 'Books', // Added category for filtering
-      rating: 4.6, // Added rating for sorting
-    },
-  ];
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch('https://ecommercebackend-8gx8.onrender.com/get-product');
+        const data = await response.json();
+        if (data.success) {
+          // Filter out products with empty/null values
+          const validProducts = data.products.filter(product => 
+            product.name && 
+            product.price && 
+            product.img && 
+            product.category &&
+            product._id
+          );
+          setProducts(validProducts);
+          setSortedProducts(validProducts);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
 
   // Function to filter products by category
   const filterProducts = (category) => {
@@ -79,20 +60,21 @@ const Shop = () => {
 
   // Function to sort products
   const sortProducts = (sortBy) => {
-    let sorted;
+    let sorted = [...products]; // Create a copy to avoid mutating state directly
     switch (sortBy) {
       case 'price':
-        sorted = products.sort((a, b) => parseFloat(a.price.split('₹')[1].trim()) - parseFloat(b.price.split('₹')[1].trim()));
+        sorted.sort((a, b) => {
+          const priceA = parseFloat(a.price.split('₹')[2]?.trim() || 0);
+          const priceB = parseFloat(b.price.split('₹')[2]?.trim() || 0);
+          return priceA - priceB;
+        });
         break;
       case 'popularity':
-        // Assuming popularity is based on rating for simplicity
-        sorted = products.sort((a, b) => b.rating - a.rating);
-        break;
       case 'rating':
-        sorted = products.sort((a, b) => b.rating - a.rating);
+        sorted.sort((a, b) => (b.rating || 0) - (a.rating || 0));
         break;
       default:
-        sorted = products;
+        break;
     }
     setSortedProducts(sorted);
   };
@@ -102,9 +84,10 @@ const Shop = () => {
     setLoadMore(prevLoadMore => prevLoadMore + 6);
   };
 
-  useEffect(() => {
-    setSortedProducts(products.sort((a, b) => parseFloat(a.price.split('₹')[1].trim()) - parseFloat(b.price.split('₹')[1].trim())));
-  }, []);
+  // Function to show less products
+  const handleShowLess = () => {
+    setLoadMore(6);
+  };
 
   return (
     <div className="bg-gray-100">
@@ -112,7 +95,7 @@ const Shop = () => {
       <section
         className="bg-cover bg-center py-16 text-center"
         style={{
-          backgroundImage: "url('src/assets/bg shop.png')", // Replace with your background image
+          backgroundImage: "url('src/assets/bg shop.png')",
         }}
       >
         <h2 className="text-5xl font-bold text-black">SHOP BY CATEGORY</h2>
@@ -138,7 +121,8 @@ const Shop = () => {
           {categories.map((category, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-lg overflow-hidden"
+              className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
+              onClick={() => filterProducts(category.name)}
             >
               <div
                 className="h-48 bg-cover bg-center"
@@ -156,9 +140,9 @@ const Shop = () => {
       {/* Filter and Sort Section */}
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-between items-center mb-4">
-          <span>Showing 1 - {loadMore} of {sortedProducts.length} results</span>
+          <span>Showing 1 - {Math.min(loadMore, sortedProducts.length)} of {sortedProducts.length} results</span>
           <div className="flex gap-4 items-center">
-            <button className="bg-gray-200 px-4 py-2 rounded">Filter</button>
+            <button className="bg-gray-200 px-4 py-2 rounded" onClick={() => filterProducts('all')}>All Products</button>
             <div>
               <label htmlFor="sort" className="mr-2">Sort by</label>
               <select id="sort" className="border-gray-300 border px-2 py-1 rounded" onChange={(e) => sortProducts(e.target.value)}>
@@ -180,7 +164,6 @@ const Shop = () => {
               >
                 ☰
               </button>
-              <button className="p-2 border rounded">|||</button>
             </div>
           </div>
         </div>
@@ -191,46 +174,45 @@ const Shop = () => {
         <h3 className="text-3xl font-bold mb-4">Products</h3>
         <div
           className={`grid ${
-            viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : ''
+            viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'
           }`}
         >
-          {filteredProducts.length > 0 ? filteredProducts.slice(0, loadMore).map((product, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
+          {(filteredProducts.length > 0 ? filteredProducts : sortedProducts)
+            .slice(0, loadMore)
+            .map((product, index) => (
               <div
-                className="h-40 bg-cover bg-center"
-                style={{ backgroundImage: `url('${product.img}')` }}
-              />
-              <div className="p-4 text-center">
-                <h4 className="font-bold text-lg">{product.name}</h4>
-                <p className="text-gray-600">{product.price}</p>
+                key={product._id}
+                className={`bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
+                  viewMode === 'list' ? 'flex' : ''
+                }`}
+              >
+                <div
+                  className={`${viewMode === 'list' ? 'w-1/3' : 'h-40'} bg-cover bg-center`}
+                  style={{ backgroundImage: `url('${product.img}')` }}
+                />
+                <div className={`p-4 ${viewMode === 'list' ? 'w-2/3' : ''} text-center`}>
+                  <h4 className="font-bold text-lg">{product.name}</h4>
+                  <p className="text-gray-600">{product.price}</p>
+                  <div className="mt-2">
+                    <span className="text-yellow-500">{'★'.repeat(Math.floor(product.rating))}</span>
+                    <span className="text-gray-300">{'★'.repeat(5 - Math.floor(product.rating))}</span>
+                    <span className="text-gray-600 ml-2">{product.rating}</span>
+                  </div>
+                </div>
               </div>
-            </div>
-          )) : sortedProducts.slice(0, loadMore).map((product, index) => (
-            <div
-              key={index}
-              className="bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
-            >
-              <div
-                className="h-40 bg-cover bg-center"
-                style={{ backgroundImage: `url('${product.img}')` }}
-              />
-              <div className="p-4 text-center">
-                <h4 className="font-bold text-lg">{product.name}</h4>
-                <p className="text-gray-600">{product.price}</p>
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
-        {loadMore < sortedProducts.length && (
-          <div className="text-center mt-10">
+        <div className="text-center mt-10">
+          {loadMore < sortedProducts.length ? (
             <button className="bg-black text-white px-6 py-2 rounded-md" onClick={handleLoadMore}>
               Load More
             </button>
-          </div>
-        )}
+          ) : (
+            <button className="bg-black text-white px-6 py-2 rounded-md" onClick={handleShowLess}>
+              Show Less
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Banner */}
@@ -250,7 +232,7 @@ const Shop = () => {
           className="w-1/2 h-full"
           style={{
             backgroundImage:
-              "url('src/assets/Rectangle 1242.png')", // Replace with your image path
+              "url('src/assets/Rectangle 1242.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
           }}

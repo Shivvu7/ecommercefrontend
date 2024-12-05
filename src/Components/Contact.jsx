@@ -1,27 +1,75 @@
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    email: "", 
     message: "",
   });
+
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission here
-    console.log("Form submitted:", formData);
-    // Reset form after submission
-    setFormData({ name: "", email: "", message: "" });
+    try {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/post-complaints', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          userType: 'unregistered'
+        })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.message === "Complaint registered successfully") {
+        setShowSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+        
+        // Hide success message and reload after 3 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+          window.location.reload();
+        }, 3000);
+      } else {
+        console.error('Failed to submit complaint');
+      }
+    } catch (error) {
+      console.error('Error submitting complaint:', error);
+    }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+      {showSuccess && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-lg shadow-xl text-center" data-aos="zoom-in">
+            <div className="w-24 h-24 mx-auto mb-4">
+              <lottie-player
+                src="https://assets2.lottiefiles.com/packages/lf20_success.json"
+                background="transparent"
+                speed="1"
+                loop
+                autoplay
+              ></lottie-player>
+            </div>
+            <h3 className="text-2xl font-bold text-green-600 mb-2">Thank You!</h3>
+            <p className="text-gray-600">We will answer you shortly.</p>
+            <p className="text-gray-600">Continue browsing...</p>
+          </div>
+        </div>
+      )}
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16 transition-all duration-500 ease-in-out transform hover:scale-105">
           <h1 className="text-4xl font-bold mb-4">
