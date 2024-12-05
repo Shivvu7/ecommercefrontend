@@ -1,7 +1,7 @@
 import React from "react";
-import img2 from '../images/img2.jpg';
-import img3 from '../images/img3.jpg';
-import img4 from '../images/img4.jpg';
+import img2 from '../Images/img2.jpg';
+import img3 from '../Images/img3.jpg';
+import img4 from '../Images/img4.jpg';
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

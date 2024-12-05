@@ -1,8 +1,8 @@
 import React from "react";
-import img1 from '../images/img1.jpg';
-import img2 from '../images/img2.jpg';
-import img3 from '../images/img3.jpg';
-import img4 from '../images/img4.jpg';
+import img1 from '../Images/img1.jpg';
+import img2 from '../Images/img2.jpg';
+import img3 from '../Images/img3.jpg';
+import img4 from '../Images/img4.jpg';
 
 const RecentlyViewed = () => {
   const products = [
