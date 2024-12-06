@@ -38,7 +38,7 @@ export default function Navbar() {
             <Link to="/shop" className="hover:text-gray-500">
               SHOP
             </Link>
-            <Link to="/occasions" className="hover:text-gray-500">
+            <Link to="/OccasionsPage" className="hover:text-gray-500">
               OCCASIONS
             </Link>
             <Link to="/about" className="hover:text-gray-500">
@@ -82,7 +82,7 @@ export default function Navbar() {
                     Login
                   </Link>
                   <Link
-                    to="/signup"
+                    to="/Signup"
                     className="block px-4 py-2 text-sm hover:bg-gray-100"
                   >
                     Signup
