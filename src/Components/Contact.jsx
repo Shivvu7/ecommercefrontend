@@ -18,7 +18,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/post-complaints', {
+      const response = await fetch('http://localhost:5000/post-complaints', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ const ContactUs = () => {
         
         setTimeout(() => {
           setShowSuccess(false);
-          window.location.reload();
+          window.location.href = '/contact';
         }, 3000);
       } else {
         console.error('Failed to submit complaint');
