@@ -5,10 +5,12 @@ import VoucherSection from "./VoucherSection";
 import RecentlyViewed from "./RecentViewed";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Navbar from "../Navbar/Navbar";
 
 const ShoppingCartPage = () => {
   return (
     <div className="container mx-auto p-4 md:p-6 space-y-6">
+      <Navbar />
       {/* Header Section */}
       <div className="text-left bg-pink-100 p-4 rounded-md">
         <h2 className="text-lg md:text-xl font-semibold mb-2">Shopping Cart</h2>

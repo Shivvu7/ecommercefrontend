@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import Navbar from './Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const [viewMode, setViewMode] = useState('grid'); // State for toggling between grid and list views
@@ -91,6 +93,7 @@ const Shop = () => {
 
   return (
     <div className="bg-gray-100">
+      <Navbar />
       {/* Hero Section */}
       <section
         className="bg-cover bg-center py-16 text-center"
@@ -186,12 +189,16 @@ const Shop = () => {
                   viewMode === 'list' ? 'flex' : ''
                 }`}
               >
-                <div
-                  className={`${viewMode === 'list' ? 'w-1/3' : 'h-40'} bg-cover bg-center`}
-                  style={{ backgroundImage: `url('${product.img}')` }}
-                />
+                <Link to={`/${product._id}`} className={`${viewMode === 'list' ? 'w-1/3' : ''}`}>
+                  <div
+                    className={`${viewMode === 'list' ? 'h-full' : 'h-40'} bg-cover bg-center`}
+                    style={{ backgroundImage: `url('${product.img}')` }}
+                  />
+                </Link>
                 <div className={`p-4 ${viewMode === 'list' ? 'w-2/3' : ''} text-center`}>
-                  <h4 className="font-bold text-lg">{product.name}</h4>
+                  <Link to={`/${product._id}`}>
+                    <h4 className="font-bold text-lg hover:text-pink-500">{product.name}</h4>
+                  </Link>
                   <p className="text-gray-600">{product.price}</p>
                   <div className="mt-2">
                     <span className="text-yellow-500">{'★'.repeat(Math.floor(product.rating))}</span>

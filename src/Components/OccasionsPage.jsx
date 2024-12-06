@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Search, ChevronDown, Gift, Cake, Heart, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react';
+import Navbar from './Navbar/Navbar';
 
 const occasions = [
   { id: 1, title: 'Birthdays', icon: Cake },
@@ -20,6 +21,8 @@ export default function OccasionsPage() {
   );
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-pink-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-pink-600 mb-8">Shop by Occasion</h1>
@@ -53,6 +56,7 @@ export default function OccasionsPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

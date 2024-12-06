@@ -8,17 +8,25 @@ import {
   FaEye,
   FaEyeSlash,
 } from "react-icons/fa";
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Login submitted", { email, password });
+    try {
+      const response = await login(email, password);
+      if (response === 'Login successful') {
+        window.location.href = '/HomePage';
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-pink-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-lg w-full bg-white shadow-lg rounded-lg p-8 space-y-6">

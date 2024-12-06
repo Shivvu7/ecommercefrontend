@@ -7,10 +7,12 @@ import img2 from "../Images/img2.jpg";
 import img3 from "../Images/img3.jpg";
 import img4 from "../Images/img4.jpg";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
 
 const HomePage = () => {
   return (
     <div className="w-full">
+      <Navbar/>
       {/* Hero Section */}
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}

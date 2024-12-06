@@ -1,8 +1,29 @@
 import { useState } from "react";
 import { Eye, EyeOff, Facebook, Mail, Twitter } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
+  const { signup } = useAuth();
+  const [error, setError] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    try {
+      await signup(name, email, password); // Fixed order of parameters to match AuthContext
+      window.location.href = '/HomePage';
+    } catch (err) {
+      setError('Error signing up. Try again.');
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
@@ -11,15 +32,19 @@ export default function SignUp() {
           <h2 className="text-3xl font-bold tracking-tight text-pink-600">Create Account</h2>
           <p className="text-gray-600">Sign up to start shopping</p>
         </div>
-        <form className="space-y-4">
+        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
             <input
               id="name"
               type="text"
               placeholder="Enter your full name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
+              required
             />
           </div>
           <div>
@@ -28,6 +53,8 @@ export default function SignUp() {
               id="email"
               type="email"
               placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                 focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
             />
@@ -39,6 +66,8 @@ export default function SignUp() {
                 id="password"
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
                   focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
               />
@@ -50,6 +79,18 @@ export default function SignUp() {
                 {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
               </button>
             </div>
+          </div>
+          <div>
+            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+            <input
+              id="confirmPassword"
+              type="password"
+              placeholder="Confirm your password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
+                focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
+            />
           </div>
           <div className="flex items-center">
             <input
@@ -100,7 +141,7 @@ export default function SignUp() {
         </div>
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{" "}
-          <a href="#" className="font-medium text-pink-600 hover:text-pink-500">
+          <a href="/login" className="font-medium text-pink-600 hover:text-pink-500">
             Sign in
           </a>
         </p>
@@ -108,4 +149,3 @@ export default function SignUp() {
     </div>
   );
 }
-

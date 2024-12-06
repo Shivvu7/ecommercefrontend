@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Navbar from "./Navbar/Navbar";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -48,6 +49,8 @@ const ContactUs = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
       {showSuccess && (
         <motion.div 
@@ -255,6 +258,7 @@ const ContactUs = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 
