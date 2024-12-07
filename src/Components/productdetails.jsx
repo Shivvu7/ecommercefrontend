@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar/Navbar';
 
 const ProductDetail = () => {
   const { productId } = useParams();
@@ -43,7 +44,7 @@ const ProductDetail = () => {
     }
 
     try {
-      const response = await fetch('https://ecommercebackend-8gx8.onrender.comadd-to-cart', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/add-to-cart', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

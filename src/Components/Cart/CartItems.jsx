@@ -44,7 +44,7 @@ const CartItems = () => {
 
         // Fetch product details for each unique product
         const productPromises = Object.values(groupedItems).map(async (item) => {
-          const productResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comproduct/${item.productId}`);
+          const productResponse = await fetch(`https://ecommercebackend-8gx8.onrender.com/product/${item.productId}`);
           const productData = await productResponse.json();
           
           if (productData.success) {
