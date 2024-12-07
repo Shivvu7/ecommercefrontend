@@ -19,7 +19,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/post-complaints', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.compost-complaints', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

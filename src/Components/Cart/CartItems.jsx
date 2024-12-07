@@ -20,7 +20,7 @@ const CartItems = () => {
       }
 
       try {
-        const cartResponse = await fetch(`http://localhost:5000/cart/${userId}`);
+        const cartResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comcart/${userId}`);
         const cartData = await cartResponse.json();
 
         if (!cartData.success) {
@@ -44,7 +44,7 @@ const CartItems = () => {
 
         // Fetch product details for each unique product
         const productPromises = Object.values(groupedItems).map(async (item) => {
-          const productResponse = await fetch(`http://localhost:5000/product/${item.productId}`);
+          const productResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comproduct/${item.productId}`);
           const productData = await productResponse.json();
           
           if (productData.success) {
@@ -77,7 +77,7 @@ const CartItems = () => {
     if (newQuantity >= 1) {
       try {
         const userId = sessionStorage.getItem('userId');
-        const response = await fetch('http://localhost:5000/update-quantity', {
+        const response = await fetch('https://ecommercebackend-8gx8.onrender.comupdate-quantity', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ const CartItems = () => {
   const handleRemoveItem = async (itemId) => {
     try {
       const userId = sessionStorage.getItem('userId');
-      const response = await fetch('http://localhost:5000/delete-items', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comdelete-items', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json'

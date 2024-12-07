@@ -16,7 +16,7 @@ const Orders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:5000/get-orders');
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comget-orders');
       const data = await response.json();
       setOrders(data.orders);
     } catch (error) {

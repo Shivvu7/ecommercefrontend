@@ -16,7 +16,7 @@ const Customers = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/get-user');
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comget-user');
       const data = await response.json();
       if (data.success) {
         setCustomers(data.users); // Updated to use data.users instead of data.customers

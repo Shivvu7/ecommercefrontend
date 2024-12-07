@@ -17,7 +17,7 @@ const Complaints = () => {
 
   const fetchComplaints = async () => {
     try {
-      const response = await fetch('http://localhost:5000/get-complaints');
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comget-complaints');
       const data = await response.json();
       setComplaints(data.complaints);
     } catch (error) {
@@ -27,7 +27,7 @@ const Complaints = () => {
 
   const handleStatusChange = async (complaintId, newStatus) => {
     try {
-      const response = await fetch('http://localhost:5000/update-complaint-status', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comupdate-complaint-status', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

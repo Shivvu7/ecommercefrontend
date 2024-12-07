@@ -22,7 +22,7 @@ const Product = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await fetch('http://localhost:5000/get-product');
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.comget-product');
       const data = await response.json();
       setProducts(data.products); // Access the products array from response
     } catch (error) {
@@ -40,7 +40,7 @@ const Product = () => {
 
   const handleSave = async (productId) => {
     try {
-      const response = await fetch('http://localhost:5000/instock-update', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.cominstock-update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
