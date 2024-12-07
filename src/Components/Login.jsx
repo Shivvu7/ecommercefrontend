@@ -21,7 +21,7 @@ const Login = () => {
     try {
       const response = await login(email, password);
       if (response === 'Login successful') {
-        window.location.href = '/HomePage';
+        window.location.href = '/';
       }
     } catch (error) {
       console.error('Login failed:', error);
