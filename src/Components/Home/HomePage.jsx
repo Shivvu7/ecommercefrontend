@@ -11,7 +11,7 @@ const useKeepAlive = () => {
   useEffect(() => {
     const keepAliveInterval = setInterval(async () => {
       try {
-        await fetch('https://ecommercebackend-8gx8.onrender.comkeep-alive');
+        await fetch('https://ecommercebackend-8gx8.onrender.com/keep-alive');
       } catch (error) {
         console.error('Keep-alive request failed:', error);
       }

@@ -29,7 +29,7 @@ const Checkout = () => {
     }
 
     try {
-      const cartResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comcart/${userId}`);
+      const cartResponse = await fetch(`https://ecommercebackend-8gx8.onrender.com/cart/${userId}`);
       const cartData = await cartResponse.json();
 
       if (!cartData.success) {
@@ -50,7 +50,7 @@ const Checkout = () => {
       }, {});
 
       const productPromises = Object.values(groupedItems).map(async (item) => {
-        const productResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comproduct/${item.productId}`);
+        const productResponse = await fetch(`https://ecommercebackend-8gx8.onrender.com/product/${item.productId}`);
         const productData = await productResponse.json();
         
         if (productData.success) {
@@ -94,7 +94,7 @@ const Checkout = () => {
 
     if (saveAddress) {
       try {
-        await fetch('https://ecommercebackend-8gx8.onrender.comupdate-address', {
+        await fetch('https://ecommercebackend-8gx8.onrender.com/update-address', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -121,7 +121,7 @@ const Checkout = () => {
     }));
 
     try {
-      const response = await fetch('https://ecommercebackend-8gx8.onrender.complace-order', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/place-order', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

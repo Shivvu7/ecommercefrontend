@@ -20,7 +20,7 @@ const CartItems = () => {
       }
 
       try {
-        const cartResponse = await fetch(`https://ecommercebackend-8gx8.onrender.comcart/${userId}`);
+        const cartResponse = await fetch(`https://ecommercebackend-8gx8.onrender.com/cart/${userId}`);
         const cartData = await cartResponse.json();
 
         if (!cartData.success) {

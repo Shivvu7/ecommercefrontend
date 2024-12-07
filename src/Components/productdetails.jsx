@@ -15,7 +15,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://ecommercebackend-8gx8.onrender.comproduct/${productId}`);
+        const response = await fetch(`https://ecommercebackend-8gx8.onrender.com/product/${productId}`);
         const data = await response.json();
         if (data.success) {
           setProduct(data.product);
