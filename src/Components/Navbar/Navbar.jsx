@@ -62,12 +62,12 @@ export default function Navbar() {
       <nav className="bg-white text-black border-b">
         <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
           <div className="h-[60px] flex items-center justify-between text-sm font-normal">
-            <Link to="/HomePage" className="text-2xl flex items-center">
+            <Link to="/" className="text-2xl flex items-center">
               <span className="font-['Bodoni_MT'] font-bold text-xl">Mera Bestie</span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-8">
-              <Link to="/HomePage" className="hover:text-gray-500">HOME</Link>
+              <Link to="/" className="hover:text-gray-500">HOME</Link>
               <Link to="/shop" className="hover:text-gray-500">SHOP</Link>
               <Link to="/OccasionsPage" className="hover:text-gray-500">OCCASIONS</Link>
               <Link to="/about" className="hover:text-gray-500">ABOUT</Link>

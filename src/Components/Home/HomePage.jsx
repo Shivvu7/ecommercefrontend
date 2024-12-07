@@ -53,9 +53,11 @@ const HomePage = () => {
             A world of unique gifts for every moment and milestone
             </p>
             <div className="text-center">
+            <Link to="/about">
               <button className="bg-white text-black hover:bg-gray-50 px-8 py-2 rounded uppercase text-sm tracking-wider">
                 Learn More
               </button>
+              </Link>
             </div>
           </div>
         </div>
