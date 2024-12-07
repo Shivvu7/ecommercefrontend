@@ -92,7 +92,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-lg shadow-md group">
+            {/* <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
                   src="https://up.yimg.com/ib/th?id=OIP.g4rG30id9Ui1e-2ZBR_1twHaFq&pid=Api&rs=1&c=1&qlt=95&w=149&h=114"
@@ -108,7 +108,7 @@ const HomePage = () => {
                   Ante mus blandit sapien sociosqu per consequat ad.
                 </p>
               </div>
-            </div>
+            </div> */}
 
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
