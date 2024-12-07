@@ -10,6 +10,7 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +19,7 @@ export default function SignUp() {
       return;
     }
     try {
-      await signup(name, email, password); // Fixed order of parameters to match AuthContext
+      await signup(name, email, password, mobile); // Adjusted to include mobile
       window.location.href = '/HomePage';
     } catch (err) {
       setError('Error signing up. Try again.');
@@ -27,124 +28,71 @@ export default function SignUp() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-pink-50">
-      <div className="w-full max-w-md mx-4 bg-white shadow-md rounded-lg p-8">
-        <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold tracking-tight text-pink-600">Create Account</h2>
-          <p className="text-gray-600">Sign up to start shopping</p>
-        </div>
-        {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+      <div className="w-full max-w-md bg-[#FFD7D7] shadow-md rounded-lg p-8">
+        <h2 className="text-3xl font-bold mb-6 text-center">Sign Up</h2>
+        {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-lg text-gray-700">Name</label>
             <input
-              id="name"
               type="text"
-              placeholder="Enter your full name"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-                focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
-              required
             />
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+          <div className="mb-4">
+            <label className="block text-lg text-gray-700">Email</label>
             <input
-              id="email"
               type="email"
-              placeholder="Enter your email"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-                focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
             />
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
-            <div className="relative mt-1">
+          <div className="mb-4">
+            <label className="block text-lg text-gray-700">Mobile Number</label>
+            <input
+              type="tel"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-lg text-gray-700">Password</label>
+            <div className="relative">
               <input
-                id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-                  focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
               />
               <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-500"
+                className="absolute right-2 top-2"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+                {showPassword ? <EyeOff /> : <Eye />}
               </button>
             </div>
           </div>
-          <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password</label>
+          <div className="mb-4">
+            <label className="block text-lg text-gray-700">Confirm Password</label>
             <input
-              id="confirmPassword"
               type="password"
-              placeholder="Confirm your password"
+              className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md text-sm shadow-sm placeholder-gray-400
-                focus:outline-none focus:border-pink-500 focus:ring-1 focus:ring-pink-500"
             />
-          </div>
-          <div className="flex items-center">
-            <input
-              id="terms"
-              type="checkbox"
-              className="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded"
-            />
-            <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
-              I agree to the terms and conditions
-            </label>
           </div>
           <button
             type="submit"
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-pink-600 hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500"
+            className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition duration-300 text-lg"
           >
-            Sign up
+            Sign Up
           </button>
         </form>
-        <div className="mt-6">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or continue with</span>
-            </div>
-          </div>
-          <div className="mt-6 grid grid-cols-3 gap-3">
-            <button
-              type="button"
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-            >
-              <Mail className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-            >
-              <Facebook className="h-5 w-5" />
-            </button>
-            <button
-              type="button"
-              className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
-            >
-              <Twitter className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
-        <p className="mt-6 text-center text-sm text-gray-600">
-          Already have an account?{" "}
-          <a href="/login" className="font-medium text-pink-600 hover:text-pink-500">
-            Sign in
-          </a>
-        </p>
       </div>
     </div>
   );
