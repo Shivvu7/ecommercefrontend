@@ -10,11 +10,11 @@ import Shop from "./Components/Shop";
 import OccasionsPage from "./Components/OccasionsPage";
 import AdminDashboard from "./adminDashboard";
 import Checkout from "./Pages/checkout";
-import Product from "./Pages/adminPages/product";
-import Complaints from "./Pages/adminPages/complaints";
-import Orders from "./Pages/adminPages/orders";
-import Customers from "./Pages/adminPages/customer";
-import CalendarPage from "./Pages/adminPages/calendar";
+import Product from "./adminPages/product";
+import Complaints from "./adminPages/complaints";
+import Orders from "./adminPages/orders";
+import Customers from "./adminPages/customer";
+import CalendarPage from "./adminPages/calendar";
 function App() {
   return (
     <BrowserRouter>
