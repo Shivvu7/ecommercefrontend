@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import Navbar from './Navbar/Navbar';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
   const [viewMode, setViewMode] = useState('grid'); // State for toggling between grid and list views
@@ -90,7 +92,10 @@ const Shop = () => {
   };
 
   return (
-    <div className="bg-gray-100">
+    <div className="bg-pink-100">
+      <div className="fixed top-0 left-0 w-full z-50">
+        <Navbar />
+      </div>
       {/* Hero Section */}
       <section
         className="bg-cover bg-center py-16 text-center"
@@ -109,7 +114,7 @@ const Shop = () => {
         <h3 className="text-3xl font-bold mb-4">Categories</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
           {/* Heading Box */}
-          <div className="p-6 bg-[#FFD7D7] rounded-lg shadow-lg">
+          <div className="p-6 bg-white rounded-lg shadow-lg">
             <p className="text-gray-500 text-sm">Lorem Ipsum</p>
             <h4 className="text-2xl font-bold text-black">Categories</h4>
             <p className="text-gray-700 mt-2">
@@ -186,12 +191,16 @@ const Shop = () => {
                   viewMode === 'list' ? 'flex' : ''
                 }`}
               >
-                <div
-                  className={`${viewMode === 'list' ? 'w-1/3' : 'h-40'} bg-cover bg-center`}
-                  style={{ backgroundImage: `url('${product.img}')` }}
-                />
+                <Link to={`/${product._id}`} className={`${viewMode === 'list' ? 'w-1/3' : ''}`}>
+                  <div
+                    className={`${viewMode === 'list' ? 'h-full' : 'h-40'} bg-cover bg-center`}
+                    style={{ backgroundImage: `url('${product.img}')` }}
+                  />
+                </Link>
                 <div className={`p-4 ${viewMode === 'list' ? 'w-2/3' : ''} text-center`}>
-                  <h4 className="font-bold text-lg">{product.name}</h4>
+                  <Link to={`/${product._id}`}>
+                    <h4 className="font-bold text-lg hover:text-pink-500">{product.name}</h4>
+                  </Link>
                   <p className="text-gray-600">{product.price}</p>
                   <div className="mt-2">
                     <span className="text-yellow-500">{'★'.repeat(Math.floor(product.rating))}</span>
@@ -217,12 +226,12 @@ const Shop = () => {
 
       {/* Banner */}
       <div
-        className="relative flex items-center justify-between bg-gray-100 rounded-lg shadow-lg overflow-hidden mt-10 mx-auto max-w-7xl"
+        className="relative flex items-center justify-between bg-white rounded-lg shadow-lg overflow-hidden mt-10 mx-auto max-w-7xl"
         style={{
           height: "250px",
         }}
       >
-        <div className="p-6 bg-[#FFD7D7] h-full flex flex-col justify-center w-1/2">
+        <div className="p-6 bg-white h-full flex flex-col justify-center w-1/2">
           <h3 className="text-3xl font-bold text-black">Exclusive Festive Collection</h3>
           <p className="text-gray-700 mt-2">
             Discover exciting deals and offers for the festive season!
@@ -240,7 +249,7 @@ const Shop = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-[#FFD7D7] py-10 text-black mt-10">
+      <footer className="bg-white py-10 text-black mt-10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col items-center md:items-start">
             <h4 className="text-2xl font-bold">MERA Bestie</h4>

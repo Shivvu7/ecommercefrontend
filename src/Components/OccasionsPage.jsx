@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client'
 
 import React, { useState } from 'react'
@@ -44,6 +45,11 @@ OccasionCard.propTypes = {
   title: PropTypes.string.isRequired,
   Icon: PropTypes.elementType.isRequired,
 }
+=======
+import { useState } from 'react';
+import { Search, ChevronDown, Gift, Cake, Heart, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react';
+import Navbar from './Navbar/Navbar';
+>>>>>>> 2742d5508c738001679f8ccb59ea5ee99f1c99fe
 
 const occasions = [
   { id: 1, title: 'Birthdays', Icon: Cake },
@@ -64,6 +70,8 @@ export default function OccasionsPage() {
   )
 
   return (
+    <>
+    <Navbar />
     <div className="min-h-screen bg-pink-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Shop by Occasion</h1>
@@ -79,6 +87,11 @@ export default function OccasionsPage() {
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   )
+=======
+    </>
+  );
+>>>>>>> 2742d5508c738001679f8ccb59ea5ee99f1c99fe
 }
 

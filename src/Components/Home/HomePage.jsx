@@ -1,16 +1,31 @@
 import React from "react";
-import { FaGift, FaCamera, FaSearch, FaHeart } from "react-icons/fa";
 import Footer from "../Footer";
-import Product1 from "../Home/Product1.jpeg";
-import img1 from "../Images/img1.jpg";
 import img2 from "../Images/img2.jpg";
 import img3 from "../Images/img3.jpg";
-import img4 from "../Images/img4.jpg";
 import { Link } from "react-router-dom";
+import Navbar from "../Navbar/Navbar";
+import { useEffect } from 'react';
+
+// Function to keep server connection alive
+const useKeepAlive = () => {
+  useEffect(() => {
+    const keepAliveInterval = setInterval(async () => {
+      try {
+        await fetch('https://ecommercebackend-8gx8.onrender.com/keep-alive');
+      } catch (error) {
+        console.error('Keep-alive request failed:', error);
+      }
+    }, 15000); // 15 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(keepAliveInterval);
+  }, []);
+};
 
 const HomePage = () => {
   return (
     <div className="w-full">
+      <Navbar/>
       {/* Hero Section */}
       <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
@@ -38,9 +53,11 @@ const HomePage = () => {
             A world of unique gifts for every moment and milestone
             </p>
             <div className="text-center">
+            <Link to="/about">
               <button className="bg-white text-black hover:bg-gray-50 px-8 py-2 rounded uppercase text-sm tracking-wider">
                 Learn More
               </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -75,7 +92,7 @@ const HomePage = () => {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-lg shadow-md group">
+            {/* <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">
                 <img
                   src="https://up.yimg.com/ib/th?id=OIP.g4rG30id9Ui1e-2ZBR_1twHaFq&pid=Api&rs=1&c=1&qlt=95&w=149&h=114"
@@ -91,7 +108,7 @@ const HomePage = () => {
                   Ante mus blandit sapien sociosqu per consequat ad.
                 </p>
               </div>
-            </div>
+            </div> */}
 
             <div className="overflow-hidden rounded-lg shadow-md group">
               <div className="relative h-64">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import { motion } from "framer-motion";
+import Navbar from "./Navbar/Navbar";
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const ContactUs = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/post-complaints', {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/post-complaints', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,7 +49,9 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4 sm:px-6 lg:px-8">
+    <>
+    <Navbar />
+    <div className="min-h-screen bg-pink-100 py-12 px-4 sm:px-6 lg:px-8">
       {showSuccess && (
         <motion.div 
           initial={{ opacity: 0, scale: 0.5 }}
@@ -255,6 +258,7 @@ const ContactUs = () => {
         </motion.div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import Navbar from "../Components/Navbar/Navbar";
 
 function About() {
   useEffect(() => {
@@ -8,6 +9,8 @@ function About() {
   }, []);
 
   return (
+    <>
+    <Navbar />    
     <div className="min-h-screen bg-gradient-to-b from-pink-100 to-pink-50">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {/* Header Section */}
@@ -145,6 +148,7 @@ function About() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
