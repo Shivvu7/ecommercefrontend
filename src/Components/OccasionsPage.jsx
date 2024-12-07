@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-'use client'
-
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Search, ChevronDown, Cake, Heart, Gift, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react'
+import Navbar from './Navbar/Navbar'
 
 function SearchInput({ value, onChange }) {
   return (
@@ -45,11 +43,6 @@ OccasionCard.propTypes = {
   title: PropTypes.string.isRequired,
   Icon: PropTypes.elementType.isRequired,
 }
-=======
-import { useState } from 'react';
-import { Search, ChevronDown, Gift, Cake, Heart, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react';
-import Navbar from './Navbar/Navbar';
->>>>>>> 2742d5508c738001679f8ccb59ea5ee99f1c99fe
 
 const occasions = [
   { id: 1, title: 'Birthdays', Icon: Cake },
@@ -87,11 +80,6 @@ export default function OccasionsPage() {
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-  )
-=======
     </>
-  );
->>>>>>> 2742d5508c738001679f8ccb59ea5ee99f1c99fe
+  )
 }
-
