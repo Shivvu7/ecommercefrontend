@@ -20,6 +20,7 @@ function App() {
     <BrowserRouter>
     <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/HomePage" element={<HomePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/Contact" element={<Contact />} />
@@ -35,6 +36,7 @@ function App() {
         <Route path="/admin/orders" element={<Orders />} />
         <Route path="/admin/customers" element={<Customers />} />
         <Route path="/admin/calendar" element={<CalendarPage />} />
+        
       </Routes>
     </BrowserRouter>
   );
