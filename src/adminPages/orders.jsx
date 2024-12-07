@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Sidebar from '../../Components/sidebar/sidebar';
+import Sidebar from '../Components/sidebar/sidebar';
 import { Search, ArrowUpDown } from 'lucide-react';
 
 const Orders = () => {
