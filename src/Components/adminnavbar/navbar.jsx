@@ -3,31 +3,21 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 
 const Navbar = () => {
     return (
-        <div className="bg-pink-100 flex items-center justify-between p-4">
-            <input
-                type="text"
-                placeholder="Search here"
-                className="border rounded-lg p-2 w-1/2"
-            />
-            <div className="flex items-center space-x-4">
-                <button className="text-blue-500">
-                    <i className="fas fa-comments"></i>
+        <div className="bg-pink-100 flex items-center justify-end p-4">
+            <div className="flex items-center space-x-2 md:space-x-4">
+                <button className="text-blue-500 p-2 hover:bg-pink-200 rounded-full">
+                    <i className="fas fa-comments text-sm md:text-base"></i>
                 </button>
-                <button className="text-blue-500">
-                    <i className="fas fa-camera"></i>
+                <button className="text-blue-500 p-2 hover:bg-pink-200 rounded-full">
+                    <i className="fas fa-camera text-sm md:text-base"></i>
                 </button>
-                <button className="text-blue-500">
-                    <i className="fas fa-trash"></i>
+                <button className="text-blue-500 p-2 hover:bg-pink-200 rounded-full">
+                    <i className="fas fa-trash text-sm md:text-base"></i>
                 </button>
-                <button className="text-blue-500">
-                    <i className="fas fa-bell"></i>
+                <button className="text-blue-500 p-2 hover:bg-pink-200 rounded-full">
+                    <i className="fas fa-bell text-sm md:text-base"></i>
                 </button>
-                <span className="text-gray-700">Hello, Samantha</span>
-                <img
-                    src="path/to/profile-pic.jpg"
-                    alt="Profile"
-                    className="w-8 h-8 rounded-full"
-                />
+                <span className="text-gray-700 text-sm md:text-base hidden sm:inline">Hello, Admin</span>
             </div>
         </div>
     );

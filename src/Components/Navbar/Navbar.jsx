@@ -63,7 +63,7 @@ export default function Navbar() {
         <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
           <div className="h-[60px] flex items-center justify-between text-sm font-normal">
             <Link to="/HomePage" className="text-2xl flex items-center">
-              <span className="font-['Bodoni_MT'] font-bold text-xl">MERA Bestie</span>
+              <span className="font-['Bodoni_MT'] font-bold text-xl">Mera Bestie</span>
             </Link>
 
             <div className="hidden lg:flex items-center space-x-8">

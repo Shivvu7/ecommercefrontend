@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import Navbar from './Navbar/Navbar';
+import { useParams, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetail = () => {
   const { productId } = useParams();
+  const navigate = useNavigate();
   const [product, setProduct] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [showLoginDialog, setShowLoginDialog] = useState(false);
+  const [showAddAnimation, setShowAddAnimation] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -30,26 +35,50 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = async () => {
+    const userId = sessionStorage.getItem('userId');
+    
+    if (!userId) {
+      setShowLoginDialog(true);
+      return;
+    }
+
     try {
-      const response = await fetch('/cart/add', {
+      const response = await fetch('http://localhost:5000/add-to-cart', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          productId: product.productId,
+          userId,
+          productId,
           quantity
         }),
       });
       
-      if (response.ok) {
-        alert('Product added to cart successfully!');
-      } else {
-        alert('Failed to add product to cart');
+      const data = await response.json();
+      
+      if (data.success && data.message === 'Product added to cart successfully') {
+        setShowAddAnimation(true);
+        setTimeout(() => {
+          setShowAddAnimation(false);
+          toast(
+            <div className="flex items-center cursor-pointer" onClick={() => navigate('/cart')}>
+              Go to Cart →
+            </div>,
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            }
+          );
+        }, 1500);
       }
     } catch (error) {
       console.error('Error adding to cart:', error);
-      alert('Error adding product to cart');
+      toast.error('Failed to add item to cart');
     }
   };
 
@@ -64,7 +93,58 @@ const ProductDetail = () => {
   return (
     <>
       <Navbar />
+      <ToastContainer />
       <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-12">
+        <AnimatePresence>
+          {showLoginDialog && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+            >
+              <div className="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
+                <h2 className="text-2xl font-bold mb-4">Oops! You're not logged in</h2>
+                <p className="mb-6">Please login to add products to your cart</p>
+                <div className="flex justify-end space-x-4">
+                  <button
+                    onClick={() => setShowLoginDialog(false)}
+                    className="px-4 py-2 text-gray-600 hover:text-gray-800"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={() => navigate('/login')}
+                    className="px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {showAddAnimation && (
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 100, opacity: 0 }}
+              className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg z-50"
+            >
+              <div className="flex items-center space-x-2">
+                <motion.div
+                  animate={{ y: [0, 20, 0], rotate: [0, 360] }}
+                  transition={{ duration: 1, repeat: 1 }}
+                  className="w-8 h-8 bg-pink-600 rounded-full"
+                />
+                <span className="font-medium">Item added to cart!</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl shadow-2xl overflow-hidden">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

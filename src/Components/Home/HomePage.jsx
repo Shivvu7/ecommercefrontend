@@ -1,13 +1,26 @@
 import React from "react";
-import { FaGift, FaCamera, FaSearch, FaHeart } from "react-icons/fa";
 import Footer from "../Footer";
-import Product1 from "../Home/Product1.jpeg";
-import img1 from "../Images/img1.jpg";
 import img2 from "../Images/img2.jpg";
 import img3 from "../Images/img3.jpg";
-import img4 from "../Images/img4.jpg";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
+import { useEffect } from 'react';
+
+// Function to keep server connection alive
+const useKeepAlive = () => {
+  useEffect(() => {
+    const keepAliveInterval = setInterval(async () => {
+      try {
+        await fetch('http://localhost:5000/keep-alive');
+      } catch (error) {
+        console.error('Keep-alive request failed:', error);
+      }
+    }, 15000); // 15 seconds
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(keepAliveInterval);
+  }, []);
+};
 
 const HomePage = () => {
   return (
