@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaSearch, FaChevronDown, FaTimes, FaBars, FaUser, FaHeart, FaShoppingCart, FaGift, FaPhone } from "react-icons/fa";
+import { FaSearch, FaChevronDown, FaTimes, FaBars, FaUser, FaHeart, FaShoppingCart, FaGift, FaPhone, FaHome, FaStore, FaEnvelope } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -40,6 +40,14 @@ export default function Navbar() {
       <div className="bg-white border-b">
         <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
           <div className="h-[60px] flex items-center justify-between">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={toggleMenu}
+              className="lg:hidden text-black"
+            >
+              <FaBars className="w-6 h-6" />
+            </button>
+
             {/* Logo */}
             <Link to="/HomePage" className="text-2xl flex items-center">
               <span className="font-['Bodoni_MT'] font-bold text-xl">MERA Bestie</span>
@@ -109,22 +117,23 @@ export default function Navbar() {
         <div className="max-w-[1200px] mx-auto px-4 lg:px-0">
           <div className="h-12 flex items-center justify-between">
             {/* Menu Items */}
-            <div className="hidden lg:flex items-center space-x-8 text-sm font-normal">
+            <div className="flex items-center space-x-8 text-sm font-normal">
               <Link to="/HomePage" className={`hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''}`}>
                 HOME
               </Link>
               <Link to="/shop" className={`hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''}`}>
                 SHOP
               </Link>
-              <Link to="/OccasionsPage" className={`hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''}`}>
-                OCCASIONS
-              </Link>
-              <Link to="/about" className={`hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''}`}>
-                ABOUT
-              </Link>
               <Link to="/contact" className={`hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''}`}>
                 CONTACT
               </Link>
+              <Link to="/OccasionsPage" className={`hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''}`}>
+            OCCASIONS
+          </Link>
+          <Link to="/about" className={`hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''}`}>
+            ABOUT
+          </Link>
+          
             </div>
 
             {/* Phone Number */}
@@ -132,14 +141,6 @@ export default function Navbar() {
               <FaPhone className="w-4 h-4 mr-2" />
               <span>(219) 555-0114</span>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMenu}
-              className="lg:hidden text-white"
-            >
-              {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
-            </button>
           </div>
         </div>
       </div>
@@ -158,27 +159,38 @@ export default function Navbar() {
         </div>
       )}
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation Sidebar */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-pink-600 text-white py-2 px-4 space-y-2 text-sm font-normal">
-          <Link to="/HomePage" className={`block py-2 hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''}`}>
-            HOME
-          </Link>
-          <Link to="/shop" className={`block py-2 hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''}`}>
-            SHOP
-          </Link>
-          <Link to="/OccasionsPage" className={`block py-2 hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''}`}>
-            OCCASIONS
-          </Link>
-          <Link to="/about" className={`block py-2 hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''}`}>
-            ABOUT
-          </Link>
-          <Link to="/contact" className={`block py-2 hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''}`}>
-            CONTACT
-          </Link>
-          <div className="flex items-center py-2">
-            <FaPhone className="w-4 h-4 mr-2" />
-            <span>(219) 555-0114</span>
+        <div className="fixed inset-0 z-50 lg:hidden">
+          <div className="fixed inset-0 bg-black bg-opacity-50" onClick={toggleMenu}></div>
+          <div className="fixed inset-y-0 left-0 max-w-xs w-full bg-white shadow-xl z-50 overflow-y-auto">
+            <div className="p-6">
+              <button onClick={toggleMenu} className="absolute top-5 right-5">
+                <FaTimes className="w-6 h-6" />
+              </button>
+              <div className="mt-8">
+                <Link to="/HomePage" className="block py-2.5 text-lg font-medium hover:text-pink-500" onClick={toggleMenu}>
+                  <FaHome className="inline-block mr-2" /> Home
+                </Link>
+                <Link to="/shop" className="block py-2.5 text-lg font-medium hover:text-pink-500" onClick={toggleMenu}>
+                  <FaStore className="inline-block mr-2" /> Shop
+                </Link>
+                <Link to="/contact" className="block py-2.5 text-lg font-medium hover:text-pink-500" onClick={toggleMenu}>
+                  <FaEnvelope className="inline-block mr-2" /> Contact
+                </Link>
+                <hr className="my-4" />
+                <Link to="/OccasionsPage" className="block py-2.5 text-lg font-medium hover:text-pink-500" onClick={toggleMenu}>
+                  Occasions
+                </Link>
+                <Link to="/about" className="block py-2.5 text-lg font-medium hover:text-pink-500" onClick={toggleMenu}>
+                  About
+                </Link>
+                <div className="mt-4 flex items-center">
+                  <FaPhone className="w-4 h-4 mr-2" />
+                  <span>(219) 555-0114</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
