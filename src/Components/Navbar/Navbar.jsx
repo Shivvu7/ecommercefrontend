@@ -29,7 +29,7 @@ export default function Navbar() {
   return (
     <nav className="bg-white text-black">
       {/* Promotional Banner */}
-      <div className="bg-white text-pink-500 py-2 text-center text-sm border-b">
+      <div className="bg-white text-pink-300 py-2 text-center text-sm border-b">
         <span className="inline-flex items-center">
           <FaGift className="mr-2" />
           USE CODE OFF10 TO GET FLAT 10% OFF ON ORDERS ABOVE RS.499 | FREE SHIPPING | COD AVAILABLE
@@ -51,7 +51,7 @@ export default function Navbar() {
                 <input
                   type="text"
                   placeholder="Search Gifts for your loved ones...."
-                  className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500"
+                  className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 transition duration-300"
                 />
                 <FaSearch className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
               </div>
@@ -61,29 +61,29 @@ export default function Navbar() {
             <div className="flex items-center space-x-6">
               <button 
                 aria-label="Search" 
-                className="md:hidden hover:text-gray-500"
+                className="md:hidden hover:text-gray-500 transition duration-300"
                 onClick={toggleSearch}
               >
                 <FaSearch className="w-4 h-4" />
               </button>
-              <Link to="/cart" className="hover:text-gray-500 flex items-center"> 
+              <Link to="/cart" className="hover:text-gray-500 flex items-center transition duration-300"> 
                 <FaShoppingCart className="w-4 h-4" />
                 <span className="ml-2 hidden md:inline">Cart</span>
               </Link>
-              <button aria-label="Wishlist" className="hover:text-gray-500 hidden md:block">
+              <button aria-label="Wishlist" className="hover:text-gray-500 hidden md:block transition duration-300">
                 <FaHeart className="w-4 h-4" />
               </button>
               <div className="relative">
                 <button
                   aria-label="Profile"
                   onClick={toggleProfileMenu}
-                  className="hover:text-gray-500 flex items-center"
+                  className="hover:text-gray-500 flex items-center transition duration-300"
                 >
                   <FaUser className="w-4 h-4" />
                   <span className="ml-2 hidden md:inline">Hi,Profile</span>
                 </button>
                 {isProfileMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg z-20">
+                  <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg z-20 transition-all duration-200 opacity-100">
                     <Link
                       to="/login"
                       className="block px-4 py-2 text-sm hover:bg-gray-100"
@@ -110,19 +110,19 @@ export default function Navbar() {
           <div className="h-12 flex items-center justify-between">
             {/* Menu Items */}
             <div className="hidden lg:flex items-center space-x-8 text-sm font-normal">
-              <Link to="/HomePage" className={`hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''}`}>
+              <Link to="/HomePage" className={`hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
                 HOME
               </Link>
-              <Link to="/shop" className={`hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''}`}>
+              <Link to="/shop" className={`hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
                 SHOP
               </Link>
-              <Link to="/OccasionsPage" className={`hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''}`}>
+              <Link to="/OccasionsPage" className={`hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
                 OCCASIONS
               </Link>
-              <Link to="/about" className={`hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''}`}>
+              <Link to="/about" className={`hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
                 ABOUT
               </Link>
-              <Link to="/contact" className={`hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''}`}>
+              <Link to="/contact" className={`hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
                 CONTACT
               </Link>
             </div>
@@ -136,7 +136,7 @@ export default function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="lg:hidden text-white"
+              className="lg:hidden text-white transition duration-300"
             >
               {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
             </button>
@@ -161,19 +161,19 @@ export default function Navbar() {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className="lg:hidden bg-pink-600 text-white py-2 px-4 space-y-2 text-sm font-normal">
-          <Link to="/HomePage" className={`block py-2 hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''}`}>
+          <Link to="/HomePage" className={`block py-2 hover:text-gray-200 ${isActive('/HomePage') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             HOME
           </Link>
-          <Link to="/shop" className={`block py-2 hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''}`}>
+          <Link to="/shop" className={`block py-2 hover:text-gray-200 ${isActive('/shop') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             SHOP
           </Link>
-          <Link to="/OccasionsPage" className={`block py-2 hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''}`}>
+          <Link to="/OccasionsPage" className={`block py-2 hover:text-gray-200 ${isActive('/OccasionsPage') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             OCCASIONS
           </Link>
-          <Link to="/about" className={`block py-2 hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''}`}>
+          <Link to="/about" className={`block py-2 hover:text-gray-200 ${isActive('/about') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             ABOUT
           </Link>
-          <Link to="/contact" className={`block py-2 hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''}`}>
+          <Link to="/contact" className={`block py-2 hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             CONTACT
           </Link>
           <div className="flex items-center py-2">
@@ -185,4 +185,3 @@ export default function Navbar() {
     </nav>
   );
 }
-

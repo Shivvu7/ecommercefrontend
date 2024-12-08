@@ -116,7 +116,10 @@ const ContactUs = () => {
               Get in Touch
             </h2>
             <form onSubmit={handleSubmit}>
-              <div className="mb-4">
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="mb-4"
+              >
                 <label
                   htmlFor="name"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -132,8 +135,11 @@ const ContactUs = () => {
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
-              </div>
-              <div className="mb-4">
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="mb-4"
+              >
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -149,8 +155,11 @@ const ContactUs = () => {
                   required
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
-              </div>
-              <div className="mb-4">
+              </motion.div>
+              <motion.div 
+                whileHover={{ scale: 1.05 }}
+                className="mb-4"
+              >
                 <label
                   htmlFor="message"
                   className="block text-sm font-medium text-gray-700 mb-1"
@@ -166,7 +175,7 @@ const ContactUs = () => {
                   rows="4"
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-pink-500"
                 ></textarea>
-              </div>
+              </motion.div>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -231,7 +240,7 @@ const ContactUs = () => {
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
-                  allowFullScreen=""
+                  allowFullScreen="true"
                   loading="lazy"
                   className="rounded-lg"
                 ></iframe>

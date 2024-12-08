@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, EyeOff } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import Navbar from "../Components/Navbar/Navbar";
+import { motion } from 'framer-motion';  // Import motion
 
 export default function SignUp() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,13 +34,21 @@ export default function SignUp() {
         <Navbar />
       </div>
       <div className="flex-grow flex items-center justify-center mt-16">
-        <div className="w-full max-w-md bg-white shadow-md rounded-lg p-8">
+        <motion.div
+          className="w-full max-w-md bg-white shadow-md rounded-lg p-8"
+          whileHover={{ scale: 1.05 }}  // Scale effect on hover
+          transition={{ duration: 0.3 }} // Smooth transition
+        >
           <div className="text-center mb-6">
             <h2 className="text-3xl font-bold text-gray-900">Sign Up</h2>
           </div>
           {error && <p className="text-red-500 text-center mb-4">{error}</p>}
           <form onSubmit={handleSubmit}>
-            <div className="mb-4">
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <label className="block text-lg text-gray-700">Name</label>
               <input
                 type="text"
@@ -47,8 +56,13 @@ export default function SignUp() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-            </div>
-            <div className="mb-4">
+            </motion.div>
+
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <label className="block text-lg text-gray-700">Email</label>
               <input
                 type="email"
@@ -56,8 +70,13 @@ export default function SignUp() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-            </div>
-            <div className="mb-4">
+            </motion.div>
+
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <label className="block text-lg text-gray-700">Mobile Number</label>
               <input
                 type="tel"
@@ -65,8 +84,13 @@ export default function SignUp() {
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
               />
-            </div>
-            <div className="mb-4">
+            </motion.div>
+
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <label className="block text-lg text-gray-700">Password</label>
               <div className="relative">
                 <input
@@ -83,8 +107,13 @@ export default function SignUp() {
                   {showPassword ? <EyeOff /> : <Eye />}
                 </button>
               </div>
-            </div>
-            <div className="mb-4">
+            </motion.div>
+
+            <motion.div
+              className="mb-4"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <label className="block text-lg text-gray-700">Confirm Password</label>
               <input
                 type="password"
@@ -92,15 +121,18 @@ export default function SignUp() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
               />
-            </div>
-            <button
+            </motion.div>
+
+            <motion.button
               type="submit"
               className="w-full bg-pink-500 text-white py-2 rounded-md hover:bg-pink-600 transition duration-300 text-lg"
+              whileHover={{ scale: 1.05 }}  // Button hover scale effect
+              transition={{ duration: 0.3 }}
             >
               Sign Up
-            </button>
+            </motion.button>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
