@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Components/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 

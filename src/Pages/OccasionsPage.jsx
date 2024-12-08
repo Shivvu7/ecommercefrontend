@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Search, Cake, Heart, Gift, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react';
-import Navbar from './Navbar/Navbar';
+import Navbar from '../Components/Navbar/Navbar';
 
 const occasions = [
   { id: 1, title: 'Birthdays', Icon: Cake },
