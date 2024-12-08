@@ -15,6 +15,7 @@ import Complaints from "./adminPages/complaints";
 import Orders from "./adminPages/orders";
 import Customers from "./adminPages/customer";
 import CalendarPage from "./adminPages/calendar";
+import NotFoundPage from "./Pages/notfound";
 function App() {
   return (
     <BrowserRouter>
@@ -36,6 +37,7 @@ function App() {
         <Route path="/admin/orders" element={<Orders />} />
         <Route path="/admin/customers" element={<Customers />} />
         <Route path="/admin/calendar" element={<CalendarPage />} />
+        <Route path="*" element={<NotFoundPage />} />
         
       </Routes>
     </BrowserRouter>
