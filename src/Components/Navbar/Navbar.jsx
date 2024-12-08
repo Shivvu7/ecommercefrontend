@@ -1,13 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Search, ChevronDown, X } from 'lucide-react';
 import { FaUser, FaHeart, FaShoppingCart, FaGift, FaPhone } from "react-icons/fa";
+import { useAuth } from '../../context/AuthContext';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [userName, setUserName] = useState('');
   const location = useLocation();
+  const { logout, fetchUserName } = useAuth();
+
+  useEffect(() => {
+    const getUserName = async () => {
+      const userId = sessionStorage.getItem('userId');
+      if (userId) {
+        try {
+          const name = await fetchUserName(userId);
+          setUserName(name);
+        } catch (error) {
+          console.error('Error fetching user name:', error);
+        }
+      }
+    };
+    getUserName();
+  }, [fetchUserName]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -21,7 +39,25 @@ export default function Navbar() {
     setIsSearchOpen(!isSearchOpen);
   };
 
+  const handleLogout = async () => {
+    try {
+      await logout();
+      sessionStorage.removeItem('userId');
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   const isActive = (path) => location.pathname === path;
+
+  const getInitials = (name) => {
+    return name
+      .split(' ')
+      .map(word => word[0])
+      .join('')
+      .toUpperCase();
+  };
 
   return (
     <nav className="bg-white text-black">
@@ -77,22 +113,35 @@ export default function Navbar() {
                   className="hover:text-gray-500 flex items-center transition duration-300"
                 >
                   <FaUser className="w-4 h-4" />
-                  <span className="ml-2 hidden md:inline">Hi,Profile</span>
+                  <span className="ml-2 hidden md:inline">
+                    {userName ? `Hi, ${getInitials(userName)}` : 'Hi, Profile'}
+                  </span>
                 </button>
                 {isProfileMenuOpen && (
                   <div className="absolute right-0 mt-2 w-[120px] bg-white border rounded shadow-lg z-20 transition-all duration-200 opacity-100">
-                    <Link
-                      to="/login"
-                      className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    >
-                      Login
-                    </Link>
-                    <Link
-                      to="/Signup"
-                      className="block px-4 py-2 text-sm hover:bg-gray-100"
-                    >
-                      Signup
-                    </Link>
+                    {sessionStorage.getItem('userId') ? (
+                      <button
+                        onClick={handleLogout}
+                        className="block w-full px-4 py-2 text-sm text-left hover:bg-gray-100"
+                      >
+                        Logout
+                      </button>
+                    ) : (
+                      <>
+                        <Link
+                          to="/login"
+                          className="block px-4 py-2 text-sm hover:bg-gray-100"
+                        >
+                          Login
+                        </Link>
+                        <Link
+                          to="/Signup"
+                          className="block px-4 py-2 text-sm hover:bg-gray-100"
+                        >
+                          Signup
+                        </Link>
+                      </>
+                    )}
                   </div>
                 )}
               </div>
