@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaSearch, FaChevronDown, FaTimes, FaBars, FaUser, FaHeart, FaShoppingCart, FaGift, FaPhone } from "react-icons/fa";
+import { Search, ChevronDown, X } from 'lucide-react';
+import { FaUser, FaHeart, FaShoppingCart, FaGift, FaPhone } from "react-icons/fa";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,23 +9,19 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const toggleProfileMenu = () => setIsProfileMenuOpen(!isProfileMenuOpen);
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleProfileMenu = () => {
+    setIsProfileMenuOpen(!isProfileMenuOpen);
+  };
+
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+  };
 
   const isActive = (path) => location.pathname === path;
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setIsMenuOpen(false);
-        setIsSearchOpen(false);
-      }
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   return (
     <nav className="bg-white text-black">
@@ -53,7 +50,7 @@ export default function Navbar() {
                   placeholder="Search Gifts for your loved ones...."
                   className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500 transition duration-300"
                 />
-                <FaSearch className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
+                <Search className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
               </div>
             </div>
 
@@ -64,7 +61,7 @@ export default function Navbar() {
                 className="md:hidden hover:text-gray-500 transition duration-300"
                 onClick={toggleSearch}
               >
-                <FaSearch className="w-4 h-4" />
+                <Search className="w-4 h-4 stroke-[2.5] hover:stroke-[3]" />
               </button>
               <Link to="/cart" className="hover:text-gray-500 flex items-center transition duration-300"> 
                 <FaShoppingCart className="w-4 h-4" />
@@ -138,7 +135,7 @@ export default function Navbar() {
               onClick={toggleMenu}
               className="lg:hidden text-white transition duration-300"
             >
-              {isMenuOpen ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
+              {isMenuOpen ? <X className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
             </button>
           </div>
         </div>
@@ -147,14 +144,11 @@ export default function Navbar() {
       {/* Mobile Search Overlay */}
       {isSearchOpen && (
         <div className="absolute top-[60px] left-0 w-full bg-white p-4 shadow-lg z-50 md:hidden">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Search Gifts for your loved ones...."
-              className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500"
-            />
-            <FaSearch className="absolute right-3 top-2.5 w-5 h-5 text-gray-400" />
-          </div>
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500"
+          />
         </div>
       )}
 
@@ -176,10 +170,6 @@ export default function Navbar() {
           <Link to="/contact" className={`block py-2 hover:text-gray-200 ${isActive('/contact') ? 'text-gray-900' : ''} hover:scale-105 transition duration-300`}>
             CONTACT
           </Link>
-          <div className="flex items-center py-2">
-            <FaPhone className="w-4 h-4 mr-2" />
-            <span>(219) 555-0114</span>
-          </div>
         </div>
       )}
     </nav>

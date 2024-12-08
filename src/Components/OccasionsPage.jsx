@@ -1,4 +1,4 @@
-<<<<<<< Updated upstream
+ 
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Search, ChevronDown, Cake, Heart, Gift, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react'
@@ -44,12 +44,11 @@ OccasionCard.propTypes = {
   title: PropTypes.string.isRequired,
   Icon: PropTypes.elementType.isRequired,
 }
-=======
+ 
 import { useState } from 'react';
 import { Search, Cake, Heart, Gift, Sparkles, Music, Utensils, GraduationCap } from 'lucide-react';
 import Navbar from './Navbar/Navbar';
->>>>>>> Stashed changes
-
+ 
 const occasions = [
   { id: 1, title: 'Birthdays', Icon: Cake },
   { id: 2, title: 'Weddings', Icon: Heart },
@@ -93,10 +92,37 @@ export default function OccasionsPage() {
           </div>
         </div>
       </div>
-<<<<<<< Updated upstream
+ 
     </div>
+ 
     </>
-  )
+  );
+}
+
+function SearchInput({ value, onChange }) {
+  return (
+    <div className="relative animate-slideDown">
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="px-4 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-pink-500 focus:outline-none"
+        placeholder="Search occasions..."
+      />
+      <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+    </div>
+  );
+}
+
+function OccasionCard({ title, Icon, className }) {
+  return (
+    <div
+      className={`bg-white p-6 rounded-lg shadow-md text-center ${className}`}
+    >
+      <Icon className="w-12 h-12 text-pink-500 mx-auto mb-4 animate-pulse" />
+      <h3 className="text-lg font-semibold text-gray-700 animate-flipIn">{title}</h3>
+    </div>
+  );
 }
 =======
     </>
@@ -128,4 +154,4 @@ function OccasionCard({ title, Icon, className }) {
     </div>
   );
 }
->>>>>>> Stashed changes
+ 
