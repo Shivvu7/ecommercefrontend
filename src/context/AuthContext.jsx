@@ -42,13 +42,16 @@ export const AuthProvider = ({ children }) => {
         throw new Error('Login failed');
       }
     } catch (err) {
+      if (err.response?.data?.error === 'Account is suspended') {
+        alert('Your account is suspended from further notice due to unusual activity');
+      } else if (err.response?.data?.error === 'Account is blocked') {
+        alert('Your account has been terminated');
+      }
       console.error('Login error:', err.response?.data?.error || err.message);
       throw err;
     }
   };
   
-  
-
   const logout = async () => {
     await api.post('/auth/logout');
     setUser(null);

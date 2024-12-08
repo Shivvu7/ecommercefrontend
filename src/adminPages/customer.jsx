@@ -19,7 +19,14 @@ const Customers = () => {
       const response = await fetch('https://ecommercebackend-8gx8.onrender.com/get-user');
       const data = await response.json();
       if (data.success) {
-        setCustomers(data.users); // Updated to use data.users instead of data.customers
+        // Map the user data and set default values if fields are missing
+        const mappedUsers = data.users.map(user => ({
+          userId: user.userId || '',
+          name: user.name || '',
+          email: user.email || '',
+          accountStatus: user.accountStatus || 'open'
+        }));
+        setCustomers(mappedUsers);
       }
     } catch (error) {
       console.error('Error fetching customers:', error);
@@ -34,14 +41,41 @@ const Customers = () => {
     setSortConfig({ key, direction });
   };
 
+  const handleStatusChange = async (userId, newStatus) => {
+    try {
+      const response = await fetch('https://ecommercebackend-8gx8.onrender.com/update-account-status', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          userId,
+          accountStatus: newStatus
+        })
+      });
+
+      if (response.ok) {
+        setCustomers(prevCustomers => 
+          prevCustomers.map(customer => 
+            customer.userId === userId 
+              ? {...customer, accountStatus: newStatus}
+              : customer
+          )
+        );
+      }
+    } catch (error) {
+      console.error('Error updating account status:', error);
+    }
+  };
+
   const sortedCustomers = React.useMemo(() => {
     if (!Array.isArray(customers)) return [];
     
     let sortableCustomers = [...customers];
     if (sortConfig.key !== null) {
       sortableCustomers.sort((a, b) => {
-        const aValue = a[sortConfig.key];
-        const bValue = b[sortConfig.key];
+        const aValue = a[sortConfig.key] || '';
+        const bValue = b[sortConfig.key] || '';
 
         const aString = String(aValue).toLowerCase();
         const bString = String(bValue).toLowerCase();
@@ -112,19 +146,36 @@ const Customers = () => {
                     <ArrowUpDown size={14} className="ml-1" />
                   </div>
                 </th>
+                <th onClick={() => handleSort('accountStatus')} className="px-6 py-3 text-left text-xs font-medium text-gray-700 uppercase tracking-wider cursor-pointer">
+                  <div className="flex items-center">
+                    Account Status
+                    <ArrowUpDown size={14} className="ml-1" />
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
               {filteredCustomers.map((user) => (
-                <tr key={user._id}>
+                <tr key={user.userId || Math.random()}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {user.userId}
+                    {user.userId || ''}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                    {user.name}
+                    {user.name || ''}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {user.email}
+                    {user.email || ''}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                    <select
+                      value={user.accountStatus || 'open'}
+                      onChange={(e) => handleStatusChange(user.userId, e.target.value)}
+                      className="border rounded px-2 py-1"
+                    >
+                      <option value="open">Open</option>
+                      <option value="suspended">Suspended</option>
+                      <option value="blocked">Blocked</option>
+                    </select>
                   </td>
                 </tr>
               ))}

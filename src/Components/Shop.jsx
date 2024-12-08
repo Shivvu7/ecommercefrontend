@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
 import Navbar from './Navbar/Navbar';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Shop = () => {
   const [viewMode, setViewMode] = useState('grid'); // State for toggling between grid and list views
@@ -9,6 +10,7 @@ const Shop = () => {
   const [sortedProducts, setSortedProducts] = useState([]); // State to hold sorted products
   const [loadMore, setLoadMore] = useState(6); // State for load more functionality
   const [products, setProducts] = useState([]); // State to hold products from API
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   const categories = [
     {
@@ -48,6 +50,18 @@ const Shop = () => {
     };
 
     fetchProducts();
+
+    // Mouse move event handler to track cursor position
+    const handleMouseMove = (e) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    
+    // Cleanup the event listener
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
   }, []);
 
   // Function to filter products by category
@@ -113,16 +127,6 @@ const Shop = () => {
       <div className="max-w-7xl mx-auto p-6">
         <h3 className="text-3xl font-bold mb-4">Categories</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-          {/* Heading Box */}
-          <div className="p-6 bg-white rounded-lg shadow-lg">
-            <p className="text-gray-500 text-sm">Lorem Ipsum</p>
-            <h4 className="text-2xl font-bold text-black">Categories</h4>
-            <p className="text-gray-700 mt-2">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s.
-            </p>
-          </div>
-
-          {/* Category Boxes */}
           {categories.map((category, index) => (
             <div
               key={index}
@@ -141,7 +145,7 @@ const Shop = () => {
           ))}
         </div>
       </div>
-      
+
       {/* Filter and Sort Section */}
       <div className="max-w-7xl mx-auto p-6">
         <div className="flex justify-between items-center mb-4">
@@ -178,18 +182,24 @@ const Shop = () => {
       <div className="max-w-7xl mx-auto p-6">
         <h3 className="text-3xl font-bold mb-4">Products</h3>
         <div
-          className={`grid ${
-            viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'
-          }`}
+          className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}
         >
           {(filteredProducts.length > 0 ? filteredProducts : sortedProducts)
             .slice(0, loadMore)
-            .map((product, index) => (
-              <div
+            .map((product) => (
+              <motion.div
                 key={product._id}
                 className={`bg-white shadow-md rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-300 ${
                   viewMode === 'list' ? 'flex' : ''
                 }`}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
+                // Apply cursor movement effect with greater translation
+                style={{
+                  transform: `translate(${(cursorPosition.x - window.innerWidth / 2) / 25}px, ${(cursorPosition.y - window.innerHeight / 2) / 25}px)`,
+                  transition: 'transform 0.1s ease-out',
+                }}
               >
                 <Link to={`/${product._id}`} className={`${viewMode === 'list' ? 'w-1/3' : ''}`}>
                   <div
@@ -208,7 +218,7 @@ const Shop = () => {
                     <span className="text-gray-600 ml-2">{product.rating}</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
         </div>
         <div className="text-center mt-10">
@@ -222,30 +232,6 @@ const Shop = () => {
             </button>
           )}
         </div>
-      </div>
-
-      {/* Banner */}
-      <div
-        className="relative flex items-center justify-between bg-white rounded-lg shadow-lg overflow-hidden mt-10 mx-auto max-w-7xl"
-        style={{
-          height: "250px",
-        }}
-      >
-        <div className="p-6 bg-white h-full flex flex-col justify-center w-1/2">
-          <h3 className="text-3xl font-bold text-black">Exclusive Festive Collection</h3>
-          <p className="text-gray-700 mt-2">
-            Discover exciting deals and offers for the festive season!
-          </p>
-        </div>
-        <div
-          className="w-1/2 h-full"
-          style={{
-            backgroundImage:
-              "url('src/assets/Rectangle 1242.png')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        ></div>
       </div>
 
       {/* Footer */}
