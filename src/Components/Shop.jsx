@@ -104,7 +104,7 @@ const Shop = () => {
         }}
       >
         <h2 className="text-5xl font-bold text-black">SHOP BY CATEGORY</h2>
-        <p className="text-gray-800 mt-4 text-lg">
+        <p className="text-gray-800 mt-12 text-lg">
           Discover our exclusive collections tailored just for you.
         </p>
       </section>
